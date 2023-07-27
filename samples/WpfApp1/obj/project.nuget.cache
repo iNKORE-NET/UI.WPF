@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ljQLP9RngnLKJD9yxrT5aFw/js070xqOa7GDrP4kHPSrU5J9Ih3pSRJOU/VKi9ux24m15+OuD+VmpcMcLI7WAw==",
+  "success": true,
+  "projectFilePath": "E:\\Yujun Products\\Inkore.UI.WPF\\samples\\WpfApp1\\WpfApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Yujun\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.18362.28\\microsoft.windows.sdk.net.ref.10.0.18362.28.nupkg.sha512"
+  ],
+  "logs": []
+}

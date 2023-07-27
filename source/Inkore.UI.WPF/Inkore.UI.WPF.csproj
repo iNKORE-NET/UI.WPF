@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net452;net6.0-windows</TargetFrameworks>
+		<UseWPF>true</UseWPF>
+		<RootNamespace>$(MSBuildProjectName)</RootNamespace>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<NoWarn>1701;1702;1573;1591;CA1416</NoWarn>
+		<ApplicationIcon>Resources\Icons\Inkore.ico</ApplicationIcon>
+		<SignAssembly>False</SignAssembly>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Include="Resources\Icons\Inkore.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Resources\Images\CircularHueGradient.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Resources\Images\transparentbg_mini.png" />
+	</ItemGroup>
+
+</Project>

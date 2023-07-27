@@ -1,0 +1,20 @@
+﻿ColorPicker
+3.3.1.0
+
+library
+C#
+.cs
+E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\ColorPicker\obj\Debug\net6.0-windows\
+ColorPicker
+none
+false
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+
+181329808218
+
+40778776117
+195-2002232736
+AlphaSlider.xaml;ColorDisplay.xaml;ColorSliders.xaml;HexColorTextBox.xaml;PortableColorPicker.xaml;SquarePicker.xaml;StandardColorPicker.xaml;Styles\Colors.xaml;Styles\ColorSliderStyle.xaml;Styles\ColorToggleButtonStyle.xaml;Styles\DarkComboBoxStyle.xaml;Styles\DarkTabControlStyle.xaml;Styles\DarkTextBoxStyle.xaml;Styles\DefaultColorPickerStyle.xaml;Styles\ImageButtonStyle.xaml;Styles\RoundedColorDisplayStyle.xaml;UserControls\HueSlider.xaml;UserControls\SquareSlider.xaml;
+
+True
+
