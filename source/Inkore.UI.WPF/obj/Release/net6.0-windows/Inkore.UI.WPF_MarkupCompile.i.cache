@@ -13,7 +13,7 @@ TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 18-50855579
 1231404707
 961287538049
-1941709816142
+1941675070116
 ColorPicker\AlphaSlider.xaml;ColorPicker\ColorDisplay.xaml;ColorPicker\ColorSliders.xaml;ColorPicker\HexColorTextBox.xaml;ColorPicker\PortableColorPicker.xaml;ColorPicker\SquarePicker.xaml;ColorPicker\StandardColorPicker.xaml;ColorPicker\Styles\Colors.xaml;ColorPicker\Styles\ColorSliderStyle.xaml;ColorPicker\Styles\ColorToggleButtonStyle.xaml;ColorPicker\Styles\DarkComboBoxStyle.xaml;ColorPicker\Styles\DarkTabControlStyle.xaml;ColorPicker\Styles\DarkTextBoxStyle.xaml;ColorPicker\Styles\DefaultColorPickerStyle.xaml;ColorPicker\Styles\ImageButtonStyle.xaml;ColorPicker\Styles\RoundedColorDisplayStyle.xaml;ColorPicker\UserControls\HueSlider.xaml;ColorPicker\UserControls\SquareSlider.xaml;
 
 False

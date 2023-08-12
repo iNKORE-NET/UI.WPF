@@ -8,8 +8,8 @@
     "net6.0-windows10.0.18362": []
   },
   "packageFolders": {
-    "C:\\Users\\Yujun\\.nuget\\packages\\": {},
-    "F:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Yoojun\\.nuget\\packages\\": {},
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -17,14 +17,14 @@
       "projectUniqueName": "E:\\Yujun Products\\Inkore.UI.WPF\\samples\\WpfApp1\\WpfApp1.csproj",
       "projectName": "WpfApp1",
       "projectPath": "E:\\Yujun Products\\Inkore.UI.WPF\\samples\\WpfApp1\\WpfApp1.csproj",
-      "packagesPath": "C:\\Users\\Yujun\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Yoojun\\.nuget\\packages\\",
       "outputPath": "E:\\Yujun Products\\Inkore.UI.WPF\\samples\\WpfApp1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "F:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Yujun\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Yoojun\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -33,8 +33,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "E:\\Yujun Products\\Inkore.UI.WPF.Modern\\_local": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -80,7 +78,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }

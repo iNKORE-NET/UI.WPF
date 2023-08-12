@@ -33,11 +33,11 @@ E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\
 E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\ColorPicker\UserControls\HueSlider.baml
 E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\ColorPicker\UserControls\SquareSlider.baml
 E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\Inkore.UI.WPF.g.resources
+E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\Inkore.UI.WPF.External.XamlBehaviorsWpf.ExceptionStringTable.resources
+E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\Inkore.UI.WPF.csproj.GenerateResource.cache
 E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\Inkore.UI.WPF.GeneratedMSBuildEditorConfig.editorconfig
 E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\Inkore.UI.WPF.csproj.CoreCompileInputs.cache
 E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\Inkore.UI.WPF.dll
 E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\refint\Inkore.UI.WPF.dll
 E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\Inkore.UI.WPF.pdb
 E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\ref\Inkore.UI.WPF.dll
-E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\Inkore.UI.WPF.External.XamlBehaviorsWpf.ExceptionStringTable.resources
-E:\Yujun Products\Inkore.UI.WPF\source\Inkore.UI.WPF\obj\Release\net6.0-windows\Inkore.UI.WPF.csproj.GenerateResource.cache
