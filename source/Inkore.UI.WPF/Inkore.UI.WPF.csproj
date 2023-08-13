@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net452;net6.0-windows</TargetFrameworks>
 		<UseWPF>true</UseWPF>
 		<RootNamespace>$(MSBuildProjectName)</RootNamespace>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<NoWarn>1701;1702;1573;1591;CA1416</NoWarn>
+		<NoWarn>1701;1702;CA1416;8618;8622;8625;MSB3539;8767;8601;8602;8604;8603;8600;CS8603;CS8618;CS8600</NoWarn>
 		<ApplicationIcon>Resources\Icons\Inkore.ico</ApplicationIcon>
 		<SignAssembly>False</SignAssembly>
+		<TargetFrameworks>net6.0-windows;net452</TargetFrameworks>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<LangVersion>8.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
