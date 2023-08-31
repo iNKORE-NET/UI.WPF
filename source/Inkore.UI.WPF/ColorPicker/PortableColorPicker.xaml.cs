@@ -17,6 +17,13 @@ namespace Inkore.UI.WPF.ColorPicker
             = DependencyProperty.Register(nameof(PickerType), typeof(PickerType), typeof(PortableColorPicker),
                 new PropertyMetadata(PickerType.HSV));
 
+        public static readonly RoutedEvent ColorPickedEvent=EventManager.RegisterRoutedEvent(nameof(ColorPicked), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PortableColorPicker));
+        public event RoutedEventHandler ColorPicked
+        {
+            add { AddHandler(ColorPickedEvent, value); }
+            remove { RemoveHandler(ColorPickedEvent, value); }
+        }
+
         public double SmallChange
         {
             get => (double)GetValue(SmallChangeProperty);
@@ -37,6 +44,11 @@ namespace Inkore.UI.WPF.ColorPicker
         public PortableColorPicker()
         {
             InitializeComponent();
+        }
+
+        private void popup_Closed(object sender, System.EventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(ColorPickedEvent));
         }
     }
 }

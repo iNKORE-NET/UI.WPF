@@ -134,5 +134,19 @@
                 storage.ColorState = state;
             }
         }
+
+
+        public System.Windows.Media.Color ToWpfColor()
+        {
+            return System.Windows.Media.Color.FromArgb((byte)A, (byte)RGB_R, (byte)RGB_G, (byte)RGB_B);
+        }
+
+        public void SetValue(System.Windows.Media.Color c)
+        {
+            RGB_R = c.R;
+            RGB_G = c.G;
+            RGB_B= c.B; ;
+            A = c.A;
+        }
     }
 }

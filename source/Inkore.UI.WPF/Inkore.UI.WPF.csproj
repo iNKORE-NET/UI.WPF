@@ -12,10 +12,15 @@
 		<LangVersion>8.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<Platforms>AnyCPU;ARM32</Platforms>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <Content Include="Resources\Icons\Inkore.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Inkore.Coreworks\source\Inkore.Coreworks.Windows\Inkore.Coreworks.Windows.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -24,6 +29,10 @@
 
 	<ItemGroup>
 		<Resource Include="Resources\Images\transparentbg_mini.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Helpers\" />
 	</ItemGroup>
 
 </Project>
