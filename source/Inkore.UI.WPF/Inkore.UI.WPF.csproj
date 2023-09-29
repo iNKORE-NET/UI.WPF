@@ -9,10 +9,10 @@
 		<SignAssembly>False</SignAssembly>
 		<TargetFrameworks>net6.0-windows;net452</TargetFrameworks>
 		<ImplicitUsings>disable</ImplicitUsings>
-		<LangVersion>8.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<Platforms>AnyCPU;ARM32</Platforms>
+		<LangVersion>9.0</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
