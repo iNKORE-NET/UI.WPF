@@ -20,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\Inkore.Coreworks\source\Inkore.Coreworks.Windows\Inkore.Coreworks.Windows.csproj" />
+	  <ProjectReference Include="..\..\..\iNKORE.Coreworks\source\iNKORE.Coreworks.Windows\iNKORE.Coreworks.Windows.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -26,7 +26,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 
-namespace Inkore.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcon.Interop
 {
     /// <summary>
     /// Receives messages from the taskbar icon through

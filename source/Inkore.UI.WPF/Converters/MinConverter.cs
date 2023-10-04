@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
 
-namespace Inkore.UI.WPF.Converters
+namespace iNKORE.UI.WPF.Converters
 {
     class MinConverter : IMultiValueConverter
     {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Inkore.UI.WPF.Converters
+namespace iNKORE.UI.WPF.Converters
 {
     public class DividedSizeConverter : IValueConverter
     {

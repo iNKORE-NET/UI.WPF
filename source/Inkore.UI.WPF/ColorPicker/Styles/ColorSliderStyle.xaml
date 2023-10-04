@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:ui="clr-namespace:Inkore.UI.WPF.ColorPicker.UIExtensions"
-                    xmlns:local="clr-namespace:Inkore.UI.WPF.ColorPicker.UIExtensions">
+                    xmlns:ui="clr-namespace:iNKORE.UI.WPF.ColorPicker.UIExtensions"
+                    xmlns:local="clr-namespace:iNKORE.UI.WPF.ColorPicker.UIExtensions">
     <Style x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Background" Value="Transparent" />

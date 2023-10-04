@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Inkore.UI.WPF.Converters
+namespace iNKORE.UI.WPF.Converters
 {
     [ValueConversion(typeof(Color), typeof(string))]
     internal class ColorToHexConverter : DependencyObject, IValueConverter

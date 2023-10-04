@@ -22,7 +22,7 @@
 // THIS COPYRIGHT NOTICE MAY NOT BE REMOVED FROM THIS FILE
 
 
-namespace Inkore.UI.WPF.TrayIcon
+namespace iNKORE.UI.WPF.TrayIcon
 {
     /// <summary>
     /// Defines flags that define when a popup

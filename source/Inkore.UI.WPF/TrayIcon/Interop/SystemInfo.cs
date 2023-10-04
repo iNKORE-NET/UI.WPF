@@ -24,7 +24,7 @@
 using System.Diagnostics.Contracts;
 using System.Windows.Interop;
 
-namespace Inkore.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcon.Interop
 {
     /// <summary>
     /// This class is a helper for system information, currently to get the DPI factors

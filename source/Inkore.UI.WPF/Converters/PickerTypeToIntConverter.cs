@@ -1,9 +1,9 @@
-﻿using Inkore.UI.WPF.ColorPicker.Models;
+﻿using iNKORE.UI.WPF.ColorPicker.Models;
 using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Inkore.UI.WPF.Converters
+namespace iNKORE.UI.WPF.Converters
 {
     [ValueConversion(typeof(PickerType), typeof(int))]
     class PickerTypeToIntConverter

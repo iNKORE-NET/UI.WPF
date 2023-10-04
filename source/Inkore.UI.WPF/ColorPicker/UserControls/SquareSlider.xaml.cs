@@ -1,4 +1,4 @@
-﻿using Inkore.UI.WPF.ColorPicker.Models;
+﻿using iNKORE.UI.WPF.ColorPicker.Models;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -7,7 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Inkore.UI.WPF.ColorPicker.UserControls
+namespace iNKORE.UI.WPF.ColorPicker.UserControls
 {
     internal partial class SquareSlider : UserControl, INotifyPropertyChanged
     {

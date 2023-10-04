@@ -30,9 +30,9 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using Inkore.UI.WPF.TrayIcon.Interop;
+using iNKORE.UI.WPF.TrayIcon.Interop;
 
-namespace Inkore.UI.WPF.TrayIcon
+namespace iNKORE.UI.WPF.TrayIcon
 {
     /// <summary>
     /// Contains declarations of WPF dependency properties

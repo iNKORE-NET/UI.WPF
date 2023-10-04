@@ -1,10 +1,10 @@
-﻿using Inkore.UI.WPF.ColorPicker.Models;
+﻿using iNKORE.UI.WPF.ColorPicker.Models;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Inkore.UI.WPF.ColorPicker
+namespace iNKORE.UI.WPF.ColorPicker
 {
     public class PickerControlBase : UserControl, IColorStateStorage
     {

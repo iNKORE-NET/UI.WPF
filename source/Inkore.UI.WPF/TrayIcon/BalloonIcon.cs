@@ -22,7 +22,7 @@
 // THIS COPYRIGHT NOTICE MAY NOT BE REMOVED FROM THIS FILE
 
 
-namespace Inkore.UI.WPF.TrayIcon
+namespace iNKORE.UI.WPF.TrayIcon
 {
     ///<summary>
     /// Supported icons for the tray's balloon messages.

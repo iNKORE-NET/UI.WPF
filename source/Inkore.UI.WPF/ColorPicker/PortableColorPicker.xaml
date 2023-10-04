@@ -1,10 +1,10 @@
-﻿<local:DualPickerControlBase x:Class="Inkore.UI.WPF.ColorPicker.PortableColorPicker"
+﻿<local:DualPickerControlBase x:Class="iNKORE.UI.WPF.ColorPicker.PortableColorPicker"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Inkore.UI.WPF.ColorPicker"
-             xmlns:converters="clr-namespace:Inkore.UI.WPF.Converters"
+             xmlns:local="clr-namespace:iNKORE.UI.WPF.ColorPicker"
+             xmlns:converters="clr-namespace:iNKORE.UI.WPF.Converters"
              mc:Ignorable="d"
              d:DesignHeight="380" d:DesignWidth="200" x:Name="uc">
     <UserControl.Resources>
@@ -22,7 +22,7 @@
                 CornerRadius="2.5"
                 Padding="0" Margin="0" RenderOptions.BitmapScalingMode="NearestNeighbor">
             <Border.Background>
-                <ImageBrush ImageSource="/Inkore.UI.WPF;component/Resources/Images/transparentbg_mini.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,8,8"/>
+                <ImageBrush ImageSource="/iNKORE.UI.WPF;component/Resources/Images/transparentbg_mini.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,8,8"/>
             </Border.Background>
             <ToggleButton Style="{StaticResource ColorToggleButtonStyle}" Padding="0" Margin="0"
                           IsEnabled="{Binding Path=IsOpen, ElementName=popup, Converter={StaticResource BoolToInvertedBoolConverter}}"

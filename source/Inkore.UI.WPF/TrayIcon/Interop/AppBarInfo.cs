@@ -4,7 +4,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace Inkore.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcon.Interop
 {
     /// <summary>
     /// This contains the logic to access the location of the app bar and communicate with it.

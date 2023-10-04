@@ -1,8 +1,8 @@
-﻿using Inkore.UI.WPF.ColorPicker.Models;
+﻿using iNKORE.UI.WPF.ColorPicker.Models;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Inkore.UI.WPF.ColorPicker.UIExtensions
+namespace iNKORE.UI.WPF.ColorPicker.UIExtensions
 {
     internal class HsvColorSlider : PreviewColorSlider
     {

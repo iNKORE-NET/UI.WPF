@@ -1,4 +1,4 @@
-﻿namespace Inkore.UI.WPF.TrayIcon.Interop
+﻿namespace iNKORE.UI.WPF.TrayIcon.Interop
 {
     /// <summary>
     /// The notify icon version that is used. The higher

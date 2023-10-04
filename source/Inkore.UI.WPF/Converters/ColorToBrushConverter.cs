@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Inkore.UI.WPF.Converters
+namespace iNKORE.UI.WPF.Converters
 {
     [ValueConversion(typeof(Color), typeof(SolidColorBrush))]
     internal class ColorToBrushConverter : IValueConverter

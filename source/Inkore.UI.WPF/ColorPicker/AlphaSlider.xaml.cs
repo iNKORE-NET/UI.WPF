@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Inkore.UI.WPF.ColorPicker
+namespace iNKORE.UI.WPF.ColorPicker
 {
     public partial class AlphaSlider : PickerControlBase
     {

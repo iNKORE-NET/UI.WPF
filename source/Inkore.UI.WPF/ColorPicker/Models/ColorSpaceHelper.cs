@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Inkore.UI.WPF.ColorPicker.Models
+namespace iNKORE.UI.WPF.ColorPicker.Models
 {
     internal static class ColorSpaceHelper
     {

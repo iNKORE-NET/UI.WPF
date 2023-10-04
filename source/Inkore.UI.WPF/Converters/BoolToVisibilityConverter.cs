@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Inkore.UI.WPF.Converters
+namespace iNKORE.UI.WPF.Converters
 {
     [ValueConversion(typeof(bool), typeof(Visibility))]
     class BoolToVisibilityConverter : DependencyObject, IValueConverter

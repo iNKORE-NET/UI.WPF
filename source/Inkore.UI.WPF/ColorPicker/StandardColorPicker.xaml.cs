@@ -1,7 +1,7 @@
-﻿using Inkore.UI.WPF.ColorPicker.Models;
+﻿using iNKORE.UI.WPF.ColorPicker.Models;
 using System.Windows;
 
-namespace Inkore.UI.WPF.ColorPicker
+namespace iNKORE.UI.WPF.ColorPicker
 {
     public partial class StandardColorPicker : DualPickerControlBase
     {

@@ -1,11 +1,11 @@
-﻿using Inkore.UI.WPF.ColorPicker.Models;
+﻿using iNKORE.UI.WPF.ColorPicker.Models;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Inkore.UI.WPF.ColorPicker.UIExtensions
+namespace iNKORE.UI.WPF.ColorPicker.UIExtensions
 {
     internal abstract class PreviewColorSlider : Slider, INotifyPropertyChanged
     {

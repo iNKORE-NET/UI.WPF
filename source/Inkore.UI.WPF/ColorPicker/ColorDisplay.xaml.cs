@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace Inkore.UI.WPF.ColorPicker
+namespace iNKORE.UI.WPF.ColorPicker
 {
     public partial class ColorDisplay : DualPickerControlBase
     {

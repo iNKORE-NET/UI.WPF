@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Inkore.UI.WPF.ColorPicker.Behaviors
+namespace iNKORE.UI.WPF.ColorPicker.Behaviors
 {
     internal class TextBoxFocusBehavior : Behavior<TextBox>
     {

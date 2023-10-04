@@ -1,11 +1,11 @@
-﻿using Inkore.UI.WPF.ColorPicker.Models;
+﻿using iNKORE.UI.WPF.ColorPicker.Models;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 
-namespace Inkore.UI.WPF.ColorPicker.UserControls
+namespace iNKORE.UI.WPF.ColorPicker.UserControls
 {
     internal partial class HueSlider : UserControl
     {

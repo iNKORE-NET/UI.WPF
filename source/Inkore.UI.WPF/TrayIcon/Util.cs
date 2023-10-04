@@ -30,9 +30,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Resources;
 using System.Windows.Threading;
-using Inkore.UI.WPF.TrayIcon.Interop;
+using iNKORE.UI.WPF.TrayIcon.Interop;
 
-namespace Inkore.UI.WPF.TrayIcon
+namespace iNKORE.UI.WPF.TrayIcon
 {
     /// <summary>
     /// Util and extension methods.

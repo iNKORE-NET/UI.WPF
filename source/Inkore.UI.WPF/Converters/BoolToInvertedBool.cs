@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Inkore.UI.WPF.Converters
+namespace iNKORE.UI.WPF.Converters
 {
     [ValueConversion(typeof(bool), typeof(bool))]
     internal class BoolToInvertedBoolConverter : IValueConverter

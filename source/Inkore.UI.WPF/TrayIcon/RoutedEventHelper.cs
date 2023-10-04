@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Inkore.UI.WPF.TrayIcon
+namespace iNKORE.UI.WPF.TrayIcon
 {
     /// <summary>
     /// Helper class used by routed events of the

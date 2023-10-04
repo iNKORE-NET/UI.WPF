@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Inkore.UI.WPF.ColorPicker.Models
+namespace iNKORE.UI.WPF.ColorPicker.Models
 {
     public class NotifyableObject : INotifyPropertyChanged
     {

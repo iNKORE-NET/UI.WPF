@@ -1,6 +1,6 @@
 using System;
 
-namespace Inkore.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcon.Interop
 {
     /// <summary>
     /// Flags that define the icon that is shown on a balloon

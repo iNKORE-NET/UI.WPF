@@ -1,4 +1,4 @@
-﻿namespace Inkore.UI.WPF.ColorPicker.Models
+﻿namespace iNKORE.UI.WPF.ColorPicker.Models
 {
     class SecondColorDecorator : IColorStateStorage
     {

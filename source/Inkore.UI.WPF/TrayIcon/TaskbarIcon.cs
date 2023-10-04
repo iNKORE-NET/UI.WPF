@@ -31,11 +31,11 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
 using System.Windows.Threading;
-using Inkore.UI.WPF.TrayIcon.Interop;
-using Point = Inkore.UI.WPF.TrayIcon.Interop.Point;
+using iNKORE.UI.WPF.TrayIcon.Interop;
+using Point = iNKORE.UI.WPF.TrayIcon.Interop.Point;
 
 
-namespace Inkore.UI.WPF.TrayIcon
+namespace iNKORE.UI.WPF.TrayIcon
 {
     /// <summary>
     /// A WPF proxy to for a taskbar icon (NotifyIcon) that sits in the system's
