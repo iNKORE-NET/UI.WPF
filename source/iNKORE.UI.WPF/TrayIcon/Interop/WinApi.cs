@@ -85,7 +85,7 @@ namespace iNKORE.UI.WPF.TrayIcon.Interop
         public static extern bool GetPhysicalCursorPos(ref Point lpPoint);
 
 
-        [DllImport(User32, SetLastError = true)]
+        [DllImport(User32, SetLastError = true, CharSet = CharSet.Auto)]
         public static extern bool GetCursorPos(ref Point lpPoint);
 
         /// <summary>
@@ -117,5 +117,30 @@ namespace iNKORE.UI.WPF.TrayIcon.Interop
         /// </summary>
         [DllImport(User32)]
         internal static extern int GetSystemMetrics(int nIndex);
+
+
+        private const int LOGPIXELSX = 88;
+        private const int LOGPIXELSY = 90;
+
+        [DllImport("gdi32.dll")]
+        private static extern int GetDeviceCaps(IntPtr hdc, int index);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetDC(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        private static extern int ReleaseDC(IntPtr hWnd, IntPtr hDc);
+
+        public static Point GetDpiByWin32()
+        {
+            var hDc = GetDC(IntPtr.Zero);
+
+            var dpiX = GetDeviceCaps(hDc, LOGPIXELSX);
+            var dpiY = GetDeviceCaps(hDc, LOGPIXELSY);
+
+            ReleaseDC(IntPtr.Zero, hDc);
+            return new Point(dpiX, dpiY);
+        }
+
     }
 }

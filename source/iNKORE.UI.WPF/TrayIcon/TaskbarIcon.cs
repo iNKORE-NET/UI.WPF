@@ -29,6 +29,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Threading;
 using iNKORE.UI.WPF.TrayIcon.Interop;
@@ -447,11 +448,14 @@ namespace iNKORE.UI.WPF.TrayIcon
                     singleClickTimer.Change(DoubleClickWaitTime, Timeout.Infinite);
                     isLeftClickCommandInvoked = true;
                 }
-                else
-                {
-                    // show context menu immediately
-                    ShowContextMenu(cursorPosition);
-                }
+
+                //ContextMenu is fired twice and ends up never showing up
+                //https://github.com/hardcodet/wpf-notifyicon/pull/87/files
+                //else
+                //{
+                //    // show context menu immediately
+                //    ShowContextMenu(cursorPosition);
+                //}
             }
 
             // make sure the left click command is invoked on mouse clicks
@@ -761,9 +765,14 @@ namespace iNKORE.UI.WPF.TrayIcon
             // use absolute positioning. We need to set the coordinates, or a delayed opening
             // (e.g. when left-clicked) opens the context menu at the wrong place if the mouse
             // is moved!
-            ContextMenu.Placement = PlacementMode.AbsolutePoint;
-            ContextMenu.HorizontalOffset = cursorPosition.X;
-            ContextMenu.VerticalOffset = cursorPosition.Y;
+
+            ContextMenu.Placement = PlacementMode.MousePoint;
+
+            // The following ones will go wrong with high dpi, so we dont use that
+            //ContextMenu.Placement = PlacementMode.AbsolutePoint;
+            //ContextMenu.HorizontalOffset = cursorPosition.X;
+            //ContextMenu.VerticalOffset = cursorPosition.Y;
+
             ContextMenu.IsOpen = true;
 
             IntPtr handle = IntPtr.Zero;
