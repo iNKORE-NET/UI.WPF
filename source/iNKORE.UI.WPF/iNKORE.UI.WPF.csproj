@@ -18,19 +18,15 @@
 	<ItemGroup>
 	  <Compile Remove="CalcBinding\**" />
 	  <Compile Remove="DragDrop\**" />
-	  <Compile Remove="Helpers\**" />
 	  <Compile Remove="TrayIcon\Diagrams\**" />
 	  <EmbeddedResource Remove="CalcBinding\**" />
 	  <EmbeddedResource Remove="DragDrop\**" />
-	  <EmbeddedResource Remove="Helpers\**" />
 	  <EmbeddedResource Remove="TrayIcon\Diagrams\**" />
 	  <None Remove="CalcBinding\**" />
 	  <None Remove="DragDrop\**" />
-	  <None Remove="Helpers\**" />
 	  <None Remove="TrayIcon\Diagrams\**" />
 	  <Page Remove="CalcBinding\**" />
 	  <Page Remove="DragDrop\**" />
-	  <Page Remove="Helpers\**" />
 	  <Page Remove="TrayIcon\Diagrams\**" />
 	</ItemGroup>
 
