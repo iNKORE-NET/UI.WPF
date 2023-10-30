@@ -25,9 +25,11 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 using System.Windows.Threading;
 using iNKORE.UI.WPF.TrayIcon.Interop;
@@ -62,7 +64,7 @@ namespace iNKORE.UI.WPF.TrayIcon
             isDesignMode =
                 (bool)
                     DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty,
-                        typeof (FrameworkElement))
+                        typeof(FrameworkElement))
                         .Metadata.DefaultValue;
         }
 
@@ -156,7 +158,7 @@ namespace iNKORE.UI.WPF.TrayIcon
 
         #endregion
 
-        #region ImageSource to Icon
+        #region ToIcon Extensions
 
         /// <summary>
         /// Reads a given image resource into a WinForms icon.
@@ -169,6 +171,8 @@ namespace iNKORE.UI.WPF.TrayIcon
         {
             if (imageSource == null) return null;
 
+            if (imageSource is BitmapSource bmp) return bmp.ToIcon();
+
             Uri uri = new Uri(imageSource.ToString());
             StreamResourceInfo streamInfo = Application.GetResourceStream(uri);
 
@@ -179,8 +183,26 @@ namespace iNKORE.UI.WPF.TrayIcon
                 throw new ArgumentException(msg);
             }
 
-            Interop.Size iconSize = SystemInfo.SmallIconSize;
-            return new Icon(streamInfo.Stream, new System.Drawing.Size(iconSize.Width, iconSize.Height));
+            return new Icon(streamInfo.Stream);
+        }
+
+        /// <summary>
+        /// Converts a System.Windows.Media.Imaging.BitmapSource to
+        /// a System.Drawing.Icon.
+        /// </summary>
+        /// <param name="bitmap">The System.Windows.Media.Imaging bitmap.</param>
+        /// <returns>System.Drawing.Icon.</returns>
+        public static Icon ToIcon(this BitmapSource bitmap)
+        {
+            var enc = new PngBitmapEncoder();
+            enc.Frames.Add(BitmapFrame.Create(bitmap));
+
+            using var stream = new MemoryStream();
+            enc.Save(stream);
+
+            using var bmp = new Bitmap(stream);
+            using var icon = Icon.FromHandle(bmp.GetHicon());
+            return icon;
         }
 
         #endregion
@@ -240,8 +262,6 @@ namespace iNKORE.UI.WPF.TrayIcon
                 case PopupActivationMode.All:
                     //return true for everything except mouse movements
                     return me != MouseEvent.MouseMove;
-                case PopupActivationMode.None:
-                    return false;
                 default:
                     throw new ArgumentOutOfRangeException("activationMode");
             }

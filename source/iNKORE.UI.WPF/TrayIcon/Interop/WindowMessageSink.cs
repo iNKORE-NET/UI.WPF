@@ -244,7 +244,7 @@ namespace iNKORE.UI.WPF.TrayIcon.Interop
             }
 
             var message = (WindowsMessages)lParam.ToInt32();
-            Debug.WriteLine("Got message " + message);
+            //Debug.WriteLine("Got message " + message);
             switch (message)
             {
                 case WindowsMessages.WM_CONTEXTMENU:

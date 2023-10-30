@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,17 @@ namespace iNKORE.UI.WPF.Helpers
             bmp.DecodePixelWidth = decodeWidth;
             bmp.CacheOption = BitmapCacheOption.OnLoad;
             bmp.UriSource = new Uri(uri);
+
+            //var fs = new FileStream(uri, FileMode.Open, FileAccess.Read);
+
+            //bmp.StreamSource = fs;
             bmp.EndInit(); //结束初始化
 
             if (bmp.CanFreeze)
                 bmp.Freeze();
+
+            //fs.Close();
+            //fs.Dispose();
 
             return bmp;
         }
