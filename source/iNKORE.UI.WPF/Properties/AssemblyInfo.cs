@@ -30,3 +30,4 @@ using System.Windows.Markup;
 //[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.DragDrop")]
 [assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.ColorPicker")]
 [assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.TrayIcon")]
+[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.DragDrop")]

@@ -17,16 +17,12 @@
 
 	<ItemGroup>
 	  <Compile Remove="CalcBinding\**" />
-	  <Compile Remove="DragDrop\**" />
 	  <Compile Remove="TrayIcon\Diagrams\**" />
 	  <EmbeddedResource Remove="CalcBinding\**" />
-	  <EmbeddedResource Remove="DragDrop\**" />
 	  <EmbeddedResource Remove="TrayIcon\Diagrams\**" />
 	  <None Remove="CalcBinding\**" />
-	  <None Remove="DragDrop\**" />
 	  <None Remove="TrayIcon\Diagrams\**" />
 	  <Page Remove="CalcBinding\**" />
-	  <Page Remove="DragDrop\**" />
 	  <Page Remove="TrayIcon\Diagrams\**" />
 	</ItemGroup>
 
