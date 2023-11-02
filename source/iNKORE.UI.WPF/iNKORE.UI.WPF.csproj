@@ -27,6 +27,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="DragDrop\Icons\EffectCopy.png" />
+	  <None Remove="DragDrop\Icons\EffectLink.png" />
+	  <None Remove="DragDrop\Icons\EffectMove.png" />
+	  <None Remove="DragDrop\Icons\EffectNone.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Content Include="Resources\Icons\iNKORE.ico" />
 	</ItemGroup>
 
@@ -35,6 +42,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="DragDrop\Icons\EffectCopy.png" />
+		<Resource Include="DragDrop\Icons\EffectLink.png" />
+		<Resource Include="DragDrop\Icons\EffectMove.png" />
+		<Resource Include="DragDrop\Icons\EffectNone.png" />
 		<Resource Include="Resources\Images\CircularHueGradient.png" />
 	</ItemGroup>
 

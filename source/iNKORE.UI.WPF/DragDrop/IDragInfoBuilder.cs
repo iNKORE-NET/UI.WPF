@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-////using JetBrains.Annotations;
+//using JetBrains.Annotations;
 
 namespace iNKORE.UI.WPF.DragDrop
 {
@@ -18,7 +18,7 @@ namespace iNKORE.UI.WPF.DragDrop
         /// <param name="originalSource">The original source of the input event.</param>
         /// <param name="mouseButton">The mouse button which was used for the drag operation.</param>
         /// <param name="getPosition">A function of the input event which is used to get drag position points.</param>
-        //[CanBeNull]
+        
         DragInfo CreateDragInfo(object sender, object originalSource, MouseButton mouseButton, Func<IInputElement, Point> getPosition);
     }
 }

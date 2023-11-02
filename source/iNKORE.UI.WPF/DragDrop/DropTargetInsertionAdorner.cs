@@ -70,7 +70,18 @@ namespace iNKORE.UI.WPF.DragDrop
                 return;
             }
 
-            var itemRect = new Rect(itemContainer.TranslatePoint(new Point(), this.AdornedElement), itemContainer.RenderSize);
+            Size itemSize = itemContainer.RenderSize;
+
+            var itemRect = new Rect(itemContainer.TranslatePoint(new Point(), this.AdornedElement), itemSize);
+
+            if (itemContainer is FrameworkElement ele)
+            {
+                itemRect.X -= ele.Margin.Left;
+                itemRect.Y -= ele.Margin.Top;
+                itemRect.Width += ele.Margin.Left + ele.Margin.Right;
+                itemRect.Height += ele.Margin.Top + ele.Margin.Bottom;
+            }
+
             Point point1,
                   point2;
             double rotation = 0;
@@ -179,9 +190,11 @@ namespace iNKORE.UI.WPF.DragDrop
             var figure = new PathFigure { StartPoint = new Point(triangleSize, 0) };
             figure.Segments.Add(firstLine);
             figure.Segments.Add(secondLine);
+            
             figure.Freeze();
 
             m_Triangle = new PathGeometry();
+           
             m_Triangle.Figures.Add(figure);
             m_Triangle.Freeze();
         }
