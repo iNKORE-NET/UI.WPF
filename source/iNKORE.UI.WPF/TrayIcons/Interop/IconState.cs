@@ -1,4 +1,4 @@
-namespace iNKORE.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcons.Interop
 {
     /// <summary>
     /// The state of the icon - can be set to

@@ -1,28 +1,4 @@
-﻿// hardcodet.net NotifyIcon for WPF
-// Copyright (c) 2009 - 2020 Philipp Sumi
-// Contact and Information: http://www.hardcodet.net
-//
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the Code Project Open License (CPOL);
-// either version 1.0 of the License, or (at your option) any later
-// version.
-// 
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-// OTHER DEALINGS IN THE SOFTWARE.
-//
-// THIS COPYRIGHT NOTICE MAY NOT BE REMOVED FROM THIS FILE
-
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows;
@@ -30,15 +6,15 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using iNKORE.UI.WPF.TrayIcon.Interop;
+using iNKORE.UI.WPF.TrayIcons.Interop;
 
-namespace iNKORE.UI.WPF.TrayIcon
+namespace iNKORE.UI.WPF.TrayIcons
 {
     /// <summary>
     /// Contains declarations of WPF dependency properties
     /// and events.
     /// </summary>
-    partial class TaskbarIcon
+    partial class TrayIcon
     {
         /// <summary>
         /// Category name that is set on designer properties.
@@ -54,7 +30,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// TrayPopupResolved Read-Only Dependency Property
         /// </summary>
         private static readonly DependencyPropertyKey TrayPopupResolvedPropertyKey
-            = DependencyProperty.RegisterReadOnly(nameof(TrayPopupResolved), typeof (Popup), typeof (TaskbarIcon),
+            = DependencyProperty.RegisterReadOnly(nameof(TrayPopupResolved), typeof (Popup), typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null));
 
 
@@ -96,7 +72,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// TrayToolTipResolved Read-Only Dependency Property
         /// </summary>
         private static readonly DependencyPropertyKey TrayToolTipResolvedPropertyKey
-            = DependencyProperty.RegisterReadOnly(nameof(TrayToolTipResolved), typeof (ToolTip), typeof (TaskbarIcon),
+            = DependencyProperty.RegisterReadOnly(nameof(TrayToolTipResolved), typeof (ToolTip), typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null));
 
 
@@ -139,7 +115,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// CustomBalloon Read-Only Dependency Property
         /// </summary>
         private static readonly DependencyPropertyKey CustomBalloonPropertyKey
-            = DependencyProperty.RegisterReadOnly(nameof(CustomBalloon), typeof (Popup), typeof (TaskbarIcon),
+            = DependencyProperty.RegisterReadOnly(nameof(CustomBalloon), typeof (Popup), typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -200,7 +176,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty IconSourceProperty =
             DependencyProperty.Register(nameof(IconSource),
                 typeof (ImageSource),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null, IconSourcePropertyChanged));
 
         /// <summary>
@@ -227,7 +203,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// <param name="e">Provides information about the updated property.</param>
         private static void IconSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TrayIcon owner = (TrayIcon) d;
             owner.OnIconSourcePropertyChanged(e);
         }
 
@@ -258,7 +234,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty ToolTipTextProperty =
             DependencyProperty.Register(nameof(ToolTipText),
                 typeof (string),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(string.Empty, ToolTipTextPropertyChanged));
 
 
@@ -287,7 +263,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// <param name="e">Provides information about the updated property.</param>
         private static void ToolTipTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TrayIcon owner = (TrayIcon) d;
             owner.OnToolTipTextPropertyChanged(e);
         }
 
@@ -332,7 +308,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty TrayToolTipProperty =
             DependencyProperty.Register(nameof(TrayToolTip),
                 typeof (UIElement),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null, TrayToolTipPropertyChanged));
 
         /// <summary>
@@ -361,7 +337,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// <param name="e">Provides information about the updated property.</param>
         private static void TrayToolTipPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TrayIcon owner = (TrayIcon) d;
             owner.OnTrayToolTipPropertyChanged(e);
         }
 
@@ -381,13 +357,13 @@ namespace iNKORE.UI.WPF.TrayIcon
             if (e.OldValue != null)
             {
                 //remove the taskbar icon reference from the previously used element
-                SetParentTaskbarIcon((DependencyObject) e.OldValue, null);
+                SetParentTrayIcon((DependencyObject) e.OldValue, null);
             }
 
             if (e.NewValue != null)
             {
                 //set this taskbar icon as a reference to the new tooltip element
-                SetParentTaskbarIcon((DependencyObject) e.NewValue, this);
+                SetParentTrayIcon((DependencyObject) e.NewValue, this);
             }
 
             //update tooltip settings - needed to make sure a string is set, even
@@ -406,7 +382,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty TrayPopupProperty =
             DependencyProperty.Register(nameof(TrayPopup),
                 typeof (UIElement),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null, TrayPopupPropertyChanged));
 
         /// <summary>
@@ -433,7 +409,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// <param name="e">Provides information about the updated property.</param>
         private static void TrayPopupPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TrayIcon owner = (TrayIcon) d;
             owner.OnTrayPopupPropertyChanged(e);
         }
 
@@ -450,14 +426,14 @@ namespace iNKORE.UI.WPF.TrayIcon
             if (e.OldValue != null)
             {
                 //remove the taskbar icon reference from the previously used element
-                SetParentTaskbarIcon((DependencyObject) e.OldValue, null);
+                SetParentTrayIcon((DependencyObject) e.OldValue, null);
             }
 
 
             if (e.NewValue != null)
             {
                 //set this taskbar icon as a reference to the new tooltip element
-                SetParentTaskbarIcon((DependencyObject) e.NewValue, this);
+                SetParentTrayIcon((DependencyObject) e.NewValue, this);
             }
 
             //create a pop
@@ -475,7 +451,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty MenuActivationProperty =
             DependencyProperty.Register(nameof(MenuActivation),
                 typeof (PopupActivationMode),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(PopupActivationMode.RightClick));
 
         /// <summary>
@@ -503,7 +479,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty PopupActivationProperty =
             DependencyProperty.Register(nameof(PopupActivation),
                 typeof (PopupActivationMode),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(PopupActivationMode.LeftClick));
 
         /// <summary>
@@ -513,7 +489,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// Default is <see cref="PopupActivationMode.LeftClick" />.
         /// </summary>
         [Category(CategoryName)]
-        [Description("Defines what mouse events display the TaskbarIconPopup.")]
+        [Description("Defines what mouse events display the TrayIconPopup.")]
         public PopupActivationMode PopupActivation
         {
             get { return (PopupActivationMode) GetValue(PopupActivationProperty); }
@@ -531,7 +507,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty PopupPlacementProperty =
             DependencyProperty.Register(nameof(PopupPlacement),
                 typeof(PlacementMode),
-                typeof(TaskbarIcon),
+                typeof(TrayIcon),
                 new FrameworkPropertyMetadata(PlacementMode.AbsolutePoint));
 
         /// <summary>
@@ -541,7 +517,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// Default is <see cref="PlacementMode.AbsolutePoint" />.
         /// </summary>
         [Category(CategoryName)]
-        [Description("Defines popup placement mode of TaskbarIconPopup.")]
+        [Description("Defines popup placement mode of TrayIconPopup.")]
         public PlacementMode PopupPlacement
         {
             get { return (PlacementMode)GetValue(PopupPlacementProperty); }
@@ -558,7 +534,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty PopupHorizontalOffsetProperty =
             DependencyProperty.Register(nameof(PopupHorizontalOffset),
                 typeof(double),
-                typeof(TaskbarIcon),
+                typeof(TrayIcon),
                 new FrameworkPropertyMetadata(0d));
 
         /// <summary>
@@ -567,7 +543,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// Defines popup HorizontalOffset<see cref="TrayPopup" />.
         /// </summary>
         [Category(CategoryName)]
-        [Description("Defines popup HorizontalOffset of TaskbarIconPopup.")]
+        [Description("Defines popup HorizontalOffset of TrayIconPopup.")]
         public double PopupHorizontalOffset
         {
             get { return (double)GetValue(PopupHorizontalOffsetProperty); }
@@ -584,7 +560,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty PopupVerticalOffsetProperty =
            DependencyProperty.Register(nameof(PopupVerticalOffset),
                typeof(double),
-               typeof(TaskbarIcon),
+               typeof(TrayIcon),
                new FrameworkPropertyMetadata(0d));
 
         /// <summary>
@@ -593,7 +569,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// Defines popup VerticalOffset <see cref="TrayPopup" />.
         /// </summary>
         [Category(CategoryName)]
-        [Description("Defines popup VerticalOffset of TaskbarIconPopup.")]
+        [Description("Defines popup VerticalOffset of TrayIconPopup.")]
         public double PopupVerticalOffset
         {
             get { return (double)GetValue(PopupVerticalOffsetProperty); }
@@ -613,7 +589,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// <param name="e">Provides information about the updated property.</param>
         private static void VisibilityPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TrayIcon owner = (TrayIcon) d;
             owner.OnVisibilityPropertyChanged(e);
         }
 
@@ -632,11 +608,11 @@ namespace iNKORE.UI.WPF.TrayIcon
             //update
             if (newValue == Visibility.Visible)
             {
-                CreateTaskbarIcon();
+                CreateTrayIcon();
             }
             else
             {
-                RemoveTaskbarIcon();
+                RemoveTrayIcon();
             }
         }
 
@@ -677,7 +653,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// <param name="e">Provides information about the updated property.</param>
         private static void DataContextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TrayIcon owner = (TrayIcon) d;
             owner.OnDataContextPropertyChanged(e);
         }
 
@@ -715,7 +691,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// <param name="e">Provides information about the updated property.</param>
         private static void ContextMenuPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskbarIcon owner = (TaskbarIcon) d;
+            TrayIcon owner = (TrayIcon) d;
             owner.OnContextMenuPropertyChanged(e);
         }
 
@@ -723,7 +699,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// <summary>
         /// Releases the old and updates the new <see cref="ContextMenu"/> property
         /// in order to reflect both the NotifyIcon's <see cref="FrameworkElement.DataContext"/>
-        /// property and have the <see cref="ParentTaskbarIconProperty"/> assigned.
+        /// property and have the <see cref="ParentTrayIconProperty"/> assigned.
         /// </summary>
         /// <param name="e">Provides information about the updated property.</param>
         private void OnContextMenuPropertyChanged(DependencyPropertyChangedEventArgs e)
@@ -731,13 +707,13 @@ namespace iNKORE.UI.WPF.TrayIcon
             if (e.OldValue != null)
             {
                 //remove the taskbar icon reference from the previously used element
-                SetParentTaskbarIcon((DependencyObject) e.OldValue, null);
+                SetParentTrayIcon((DependencyObject) e.OldValue, null);
             }
 
             if (e.NewValue != null)
             {
                 //set this taskbar icon as a reference to the new tooltip element
-                SetParentTaskbarIcon((DependencyObject) e.NewValue, this);
+                SetParentTrayIcon((DependencyObject) e.NewValue, this);
             }
 
             UpdateDataContext((ContextMenu) e.NewValue, null, DataContext);
@@ -754,7 +730,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty DoubleClickCommandProperty =
             DependencyProperty.Register(nameof(DoubleClickCommand),
                 typeof (ICommand),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -781,7 +757,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty DoubleClickCommandParameterProperty =
             DependencyProperty.Register(nameof(DoubleClickCommandParameter),
                 typeof (object),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -807,7 +783,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty DoubleClickCommandTargetProperty =
             DependencyProperty.Register(nameof(DoubleClickCommandTarget),
                 typeof (IInputElement),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -834,7 +810,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty LeftClickCommandProperty =
             DependencyProperty.Register(nameof(LeftClickCommand),
                 typeof (ICommand),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -861,7 +837,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty LeftClickCommandParameterProperty =
             DependencyProperty.Register(nameof(LeftClickCommandParameter),
                 typeof (object),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -888,7 +864,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty LeftClickCommandTargetProperty =
             DependencyProperty.Register(nameof(LeftClickCommandTarget),
                 typeof (IInputElement),
-                typeof (TaskbarIcon),
+                typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null));
 
         /// <summary>
@@ -915,7 +891,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         public static readonly DependencyProperty NoLeftClickDelayProperty =
             DependencyProperty.Register(nameof(NoLeftClickDelay),
                 typeof(bool),
-                typeof(TaskbarIcon),
+                typeof(TrayIcon),
                 new FrameworkPropertyMetadata(false));
 
 
@@ -943,7 +919,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent TrayLeftMouseDownEvent = EventManager.RegisterRoutedEvent(
             "TrayLeftMouseDown",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when the user presses the left mouse button.
@@ -986,7 +962,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent TrayRightMouseDownEvent =
             EventManager.RegisterRoutedEvent("TrayRightMouseDown",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when the presses the right mouse button.
@@ -1027,7 +1003,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent TrayMiddleMouseDownEvent =
             EventManager.RegisterRoutedEvent("TrayMiddleMouseDown",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when the user presses the middle mouse button.
@@ -1067,7 +1043,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// TrayLeftMouseUp Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayLeftMouseUpEvent = EventManager.RegisterRoutedEvent("TrayLeftMouseUp",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when the user releases the left mouse button.
@@ -1107,7 +1083,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// TrayRightMouseUp Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayRightMouseUpEvent = EventManager.RegisterRoutedEvent("TrayRightMouseUp",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when the user releases the right mouse button.
@@ -1148,7 +1124,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent TrayMiddleMouseUpEvent = EventManager.RegisterRoutedEvent(
             "TrayMiddleMouseUp",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when the user releases the middle mouse button.
@@ -1189,7 +1165,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent TrayMouseDoubleClickEvent =
             EventManager.RegisterRoutedEvent("TrayMouseDoubleClick",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when the user double-clicks the taskbar icon.
@@ -1231,7 +1207,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// TrayMouseMove Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayMouseMoveEvent = EventManager.RegisterRoutedEvent("TrayMouseMove",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when the user moves the mouse over the taskbar icon.
@@ -1272,7 +1248,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent TrayBalloonTipShownEvent =
             EventManager.RegisterRoutedEvent("TrayBalloonTipShown",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when a balloon ToolTip is displayed.
@@ -1313,7 +1289,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent TrayBalloonTipClosedEvent =
             EventManager.RegisterRoutedEvent("TrayBalloonTipClosed",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when a balloon ToolTip was closed.
@@ -1354,7 +1330,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent TrayBalloonTipClickedEvent =
             EventManager.RegisterRoutedEvent("TrayBalloonTipClicked",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Occurs when the user clicks on a balloon ToolTip.
@@ -1395,7 +1371,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent TrayContextMenuOpenEvent =
             EventManager.RegisterRoutedEvent("TrayContextMenuOpen",
-                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Bubbled event that occurs when the context menu of the taskbar icon is being displayed.
@@ -1432,7 +1408,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent PreviewTrayContextMenuOpenEvent =
             EventManager.RegisterRoutedEvent("PreviewTrayContextMenuOpen",
-                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Tunneled event that occurs when the context menu of the taskbar icon is being displayed.
@@ -1472,7 +1448,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// TrayPopupOpen Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayPopupOpenEvent = EventManager.RegisterRoutedEvent("TrayPopupOpen",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Bubbled event that occurs when the custom popup is being opened.
@@ -1509,7 +1485,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent PreviewTrayPopupOpenEvent =
             EventManager.RegisterRoutedEvent("PreviewTrayPopupOpen",
-                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Tunneled event that occurs when the custom popup is being opened.
@@ -1549,7 +1525,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// TrayToolTipOpen Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayToolTipOpenEvent = EventManager.RegisterRoutedEvent("TrayToolTipOpen",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Bubbled event that occurs when the custom ToolTip is being displayed.
@@ -1586,7 +1562,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent PreviewTrayToolTipOpenEvent =
             EventManager.RegisterRoutedEvent("PreviewTrayToolTipOpen",
-                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Tunneled event that occurs when the custom ToolTip is being displayed.
@@ -1626,7 +1602,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// TrayToolTipClose Routed Event
         /// </summary>
         public static readonly RoutedEvent TrayToolTipCloseEvent = EventManager.RegisterRoutedEvent("TrayToolTipClose",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Bubbled event that occurs when a custom tooltip is being closed.
@@ -1663,7 +1639,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         public static readonly RoutedEvent PreviewTrayToolTipCloseEvent =
             EventManager.RegisterRoutedEvent("PreviewTrayToolTipClose",
-                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+                RoutingStrategy.Tunnel, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Tunneled event that occurs when a custom tooltip is being closed.
@@ -1705,7 +1681,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// PopupOpened Attached Routed Event
         /// </summary>
         public static readonly RoutedEvent PopupOpenedEvent = EventManager.RegisterRoutedEvent("PopupOpened",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Adds a handler for the PopupOpened attached event
@@ -1748,7 +1724,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// ToolTipOpened Attached Routed Event
         /// </summary>
         public static readonly RoutedEvent ToolTipOpenedEvent = EventManager.RegisterRoutedEvent("ToolTipOpened",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Adds a handler for the ToolTipOpened attached event
@@ -1791,7 +1767,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// ToolTipClose Attached Routed Event
         /// </summary>
         public static readonly RoutedEvent ToolTipCloseEvent = EventManager.RegisterRoutedEvent("ToolTipClose",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Adds a handler for the ToolTipClose attached event
@@ -1834,7 +1810,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// BalloonShowing Attached Routed Event
         /// </summary>
         public static readonly RoutedEvent BalloonShowingEvent = EventManager.RegisterRoutedEvent("BalloonShowing",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Adds a handler for the BalloonShowing attached event
@@ -1860,8 +1836,8 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// A static helper method to raise the BalloonShowing event on a target element.
         /// </summary>
         /// <param name="target">UIElement or ContentElement on which to raise the event</param>
-        /// <param name="source">The <see cref="TaskbarIcon"/> instance that manages the balloon.</param>
-        internal static RoutedEventArgs RaiseBalloonShowingEvent(DependencyObject target, TaskbarIcon source)
+        /// <param name="source">The <see cref="TrayIcon"/> instance that manages the balloon.</param>
+        internal static RoutedEventArgs RaiseBalloonShowingEvent(DependencyObject target, TrayIcon source)
         {
             if (target == null) return null;
 
@@ -1878,7 +1854,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// BalloonClosing Attached Routed Event
         /// </summary>
         public static readonly RoutedEvent BalloonClosingEvent = EventManager.RegisterRoutedEvent("BalloonClosing",
-            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TaskbarIcon));
+            RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (TrayIcon));
 
         /// <summary>
         /// Adds a handler for the BalloonClosing attached event
@@ -1904,8 +1880,8 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// A static helper method to raise the BalloonClosing event on a target element.
         /// </summary>
         /// <param name="target">UIElement or ContentElement on which to raise the event</param>
-        /// <param name="source">The <see cref="TaskbarIcon"/> instance that manages the balloon.</param>
-        internal static RoutedEventArgs RaiseBalloonClosingEvent(DependencyObject target, TaskbarIcon source)
+        /// <param name="source">The <see cref="TrayIcon"/> instance that manages the balloon.</param>
+        internal static RoutedEventArgs RaiseBalloonClosingEvent(DependencyObject target, TrayIcon source)
         {
             if (target == null) return null;
 
@@ -1918,36 +1894,36 @@ namespace iNKORE.UI.WPF.TrayIcon
 
         //ATTACHED PROPERTIES
 
-        #region ParentTaskbarIcon
+        #region ParentTrayIcon
 
         /// <summary>
         /// An attached property that is assigned to displayed UI elements (balloons, tooltips, context menus), and
         /// that can be used to bind to this control. The attached property is being derived, so binding is
         /// quite straightforward:
         /// <code>
-        /// <TextBlock Text="{Binding RelativeSource={RelativeSource Self}, Path=(tb:TaskbarIcon.ParentTaskbarIcon).ToolTipText}" />
+        /// <TextBlock Text="{Binding RelativeSource={RelativeSource Self}, Path=(tb:TrayIcon.ParentTrayIcon).ToolTipText}" />
         /// </code>
         /// </summary>  
-        public static readonly DependencyProperty ParentTaskbarIconProperty =
-            DependencyProperty.RegisterAttached("ParentTaskbarIcon", typeof (TaskbarIcon), typeof (TaskbarIcon),
+        public static readonly DependencyProperty ParentTrayIconProperty =
+            DependencyProperty.RegisterAttached("ParentTrayIcon", typeof (TrayIcon), typeof (TrayIcon),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Gets the ParentTaskbarIcon property.  This dependency property 
+        /// Gets the ParentTrayIcon property.  This dependency property 
         /// indicates ....
         /// </summary>
-        public static TaskbarIcon GetParentTaskbarIcon(DependencyObject d)
+        public static TrayIcon GetParentTrayIcon(DependencyObject d)
         {
-            return (TaskbarIcon) d.GetValue(ParentTaskbarIconProperty);
+            return (TrayIcon) d.GetValue(ParentTrayIconProperty);
         }
 
         /// <summary>
-        /// Sets the ParentTaskbarIcon property.  This dependency property 
+        /// Sets the ParentTrayIcon property.  This dependency property 
         /// indicates ....
         /// </summary>
-        public static void SetParentTaskbarIcon(DependencyObject d, TaskbarIcon value)
+        public static void SetParentTrayIcon(DependencyObject d, TrayIcon value)
         {
-            d.SetValue(ParentTaskbarIconProperty, value);
+            d.SetValue(ParentTrayIconProperty, value);
         }
 
         #endregion
@@ -1957,19 +1933,19 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// <summary>
         /// Registers properties.
         /// </summary>
-        static TaskbarIcon()
+        static TrayIcon()
         {
             //register change listener for the Visibility property
             var md = new PropertyMetadata(Visibility.Visible, VisibilityPropertyChanged);
-            VisibilityProperty.OverrideMetadata(typeof (TaskbarIcon), md);
+            VisibilityProperty.OverrideMetadata(typeof (TrayIcon), md);
 
             //register change listener for the DataContext property
             md = new FrameworkPropertyMetadata(DataContextPropertyChanged);
-            DataContextProperty.OverrideMetadata(typeof (TaskbarIcon), md);
+            DataContextProperty.OverrideMetadata(typeof (TrayIcon), md);
 
             //register change listener for the ContextMenu property
             md = new FrameworkPropertyMetadata(ContextMenuPropertyChanged);
-            ContextMenuProperty.OverrideMetadata(typeof (TaskbarIcon), md);
+            ContextMenuProperty.OverrideMetadata(typeof (TrayIcon), md);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 using System.Drawing;
 
-namespace iNKORE.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcons.Interop
 {
     /// <summary>
     /// Resolves the current tray position.

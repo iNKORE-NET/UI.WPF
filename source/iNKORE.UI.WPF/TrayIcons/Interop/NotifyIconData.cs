@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace iNKORE.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcons.Interop
 {
     /// <summary>
     /// A struct that is submitted in order to configure
@@ -31,7 +31,7 @@ namespace iNKORE.UI.WPF.TrayIcon.Interop
         /// associated with a single hWnd by assigning each a different uID. This feature, however
         /// is currently not used.
         /// </summary>
-        public uint TaskbarIconId;
+        public uint TrayIconId;
 
         /// <summary>
         /// Flags that indicate which of the other members contain valid data. This member can be
@@ -106,7 +106,7 @@ namespace iNKORE.UI.WPF.TrayIcon.Interop
         ///   This value overrides uID and is the recommended method of identifying the icon.<br/>
         /// - Windows XP through Windows Vista: Reserved.
         /// </summary>
-        public Guid TaskbarIconGuid;
+        public Guid TrayIconGuid;
 
         /// <summary>
         /// Windows Vista (Shell32.dll version 6.0.6) and later. The handle of a customized
@@ -144,7 +144,7 @@ namespace iNKORE.UI.WPF.TrayIcon.Interop
             }
 
             data.WindowHandle = handle;
-            data.TaskbarIconId = 0x0;
+            data.TrayIconId = 0x0;
             data.CallbackMessageId = WindowMessageSink.CallbackMessageId;
             data.VersionOrTimeout = (uint) NotifyIconVersion.Win95;
 

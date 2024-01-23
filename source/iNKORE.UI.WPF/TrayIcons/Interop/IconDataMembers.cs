@@ -1,6 +1,6 @@
 using System;
 
-namespace iNKORE.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcons.Interop
 {
     /// <summary>
     /// Indicates which members of a <see cref="NotifyIconData"/> structure

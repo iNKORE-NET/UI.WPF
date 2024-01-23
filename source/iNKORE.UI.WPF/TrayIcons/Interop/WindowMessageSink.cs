@@ -26,7 +26,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 
-namespace iNKORE.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcons.Interop
 {
     /// <summary>
     /// Receives messages from the taskbar icon through
@@ -158,7 +158,7 @@ namespace iNKORE.UI.WPF.TrayIcon.Interop
         private void CreateMessageWindow()
         {
             //generate a unique ID for the window
-            WindowId = "WPFTaskbarIcon_" + Guid.NewGuid();
+            WindowId = "WPFTrayIcon_" + Guid.NewGuid();
 
             //register window message handler
             messageHandler = OnWindowMessageReceived;

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows;
 
-namespace iNKORE.UI.WPF.TrayIcon
+namespace iNKORE.UI.WPF.TrayIcons
 {
     /// <summary>
     /// Helper class used by routed events of the
-    /// <see cref="TaskbarIcon"/> class.
+    /// <see cref="TrayIcon"/> class.
     /// </summary>
     internal static class RoutedEventHelper
     {

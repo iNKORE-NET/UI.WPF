@@ -25,7 +25,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace iNKORE.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcons.Interop
 {
     /// <summary>
     /// This enum defines the windows messages we respond to.

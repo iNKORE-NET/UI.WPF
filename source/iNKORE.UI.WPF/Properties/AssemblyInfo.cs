@@ -28,5 +28,5 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.Converters")]
 [assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.Controls")]
 [assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.ColorPicker")]
-[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.TrayIcon")]
+[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.TrayIconss")]
 [assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.DragDrop")]

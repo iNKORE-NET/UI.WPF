@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace iNKORE.UI.WPF.TrayIcon.Interop
+namespace iNKORE.UI.WPF.TrayIcons.Interop
 {
     /// <summary>
     /// Win API struct representing a size with width and height.

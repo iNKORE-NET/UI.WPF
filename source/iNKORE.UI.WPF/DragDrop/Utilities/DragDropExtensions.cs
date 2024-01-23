@@ -1,4 +1,4 @@
-using iNKORE.Coreworks.Windows.Helpers;
+using iNKORE._Internal;
 using System;
 using System.Windows;
 using System.Windows.Controls;

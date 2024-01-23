@@ -1,28 +1,4 @@
-﻿// hardcodet.net NotifyIcon for WPF
-// Copyright (c) 2009 - 2020 Philipp Sumi
-// Contact and Information: http://www.hardcodet.net
-//
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the Code Project Open License (CPOL);
-// either version 1.0 of the License, or (at your option) any later
-// version.
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-// OTHER DEALINGS IN THE SOFTWARE.
-//
-// THIS COPYRIGHT NOTICE MAY NOT BE REMOVED FROM THIS FILE
-
-
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
@@ -32,18 +8,18 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Threading;
-using iNKORE.Coreworks.Windows.Helpers;
-using iNKORE.UI.WPF.TrayIcon.Interop;
-using Point = iNKORE.UI.WPF.TrayIcon.Interop.Point;
+using iNKORE._Internal;
+using iNKORE.UI.WPF.TrayIcons.Interop;
+using Point = iNKORE.UI.WPF.TrayIcons.Interop.Point;
 
 
-namespace iNKORE.UI.WPF.TrayIcon
+namespace iNKORE.UI.WPF.TrayIcons
 {
     /// <summary>
     /// A WPF proxy to for a taskbar icon (NotifyIcon) that sits in the system's
     /// taskbar notification area ("system tray").
     /// </summary>
-    public partial class TaskbarIcon : FrameworkElement, IDisposable
+    public partial class TrayIcon : FrameworkElement, IDisposable
     {
         private readonly object lockObject = new object();
 
@@ -84,7 +60,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// <summary>
         /// Indicates whether the taskbar icon has been created or not.
         /// </summary>
-        public bool IsTaskbarIconCreated { get; private set; }
+        public bool IsTrayIconCreated { get; private set; }
 
         /// <summary>
         /// Indicates whether custom tooltips are supported, which depends
@@ -119,7 +95,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// Initializes the taskbar icon and registers a message listener
         /// in order to receive events from the taskbar area.
         /// </summary>
-        public TaskbarIcon()
+        public TrayIcon()
         {
             // using dummy sink in design mode
             messageSink = Util.IsDesignMode
@@ -130,7 +106,7 @@ namespace iNKORE.UI.WPF.TrayIcon
             iconData = NotifyIconData.CreateDefault(messageSink.MessageWindowHandle);
 
             // create the taskbar icon
-            CreateTaskbarIcon();
+            CreateTrayIcon();
 
             // register event listeners
             messageSink.MouseEventReceived += OnMouseEvent;
@@ -237,7 +213,7 @@ namespace iNKORE.UI.WPF.TrayIcon
             popup.Child = balloon;
 
             //don't set the PlacementTarget as it causes the popup to become hidden if the
-            //TaskbarIcon's parent is hidden, too...
+            //TrayIcon's parent is hidden, too...
             //popup.PlacementTarget = this;
 
             popup.Placement = PopupPlacement;
@@ -255,7 +231,7 @@ namespace iNKORE.UI.WPF.TrayIcon
             }
 
             // assign this instance as an attached property
-            SetParentTaskbarIcon(balloon, this);
+            SetParentTrayIcon(balloon, this);
 
             // fire attached event
             RaiseBalloonShowingEvent(balloon, this);
@@ -335,7 +311,7 @@ namespace iNKORE.UI.WPF.TrayIcon
                     popup.Child = null;
 
                     // reset attached property
-                    if (element != null) SetParentTaskbarIcon(element, null);
+                    if (element != null) SetParentTrayIcon(element, null);
                 }
 
                 // remove custom balloon anyway
@@ -549,8 +525,8 @@ namespace iNKORE.UI.WPF.TrayIcon
                 {
                     Placement = PlacementMode.Mouse,
                     // do *not* set the placement target, as it causes the popup to become hidden if the
-                    // TaskbarIcon's parent is hidden, too. At runtime, the parent can be resolved through
-                    // the ParentTaskbarIcon attached dependency property:
+                    // TrayIcon's parent is hidden, too. At runtime, the parent can be resolved through
+                    // the ParentTrayIcon attached dependency property:
                     // PlacementTarget = this;
 
                     // make sure the tooltip is invisible
@@ -572,7 +548,7 @@ namespace iNKORE.UI.WPF.TrayIcon
             }
 
             // the tooltip explicitly gets the DataContext of this instance.
-            // If there is no DataContext, the TaskbarIcon assigns itself
+            // If there is no DataContext, the TrayIcon assigns itself
             if (tt != null)
             {
                 UpdateDataContext(tt, null, DataContext);
@@ -643,8 +619,8 @@ namespace iNKORE.UI.WPF.TrayIcon
                     // We don't need that so just assign the control as the child.
                     Child = TrayPopup,
                     // do *not* set the placement target, as it causes the popup to become hidden if the
-                    // TaskbarIcon's parent is hidden, too. At runtime, the parent can be resolved through
-                    // the ParentTaskbarIcon attached dependency property:
+                    // TrayIcon's parent is hidden, too. At runtime, the parent can be resolved through
+                    // the ParentTrayIcon attached dependency property:
                     // PlacementTarget = this;
 
                     Placement = PopupPlacement,
@@ -653,7 +629,7 @@ namespace iNKORE.UI.WPF.TrayIcon
             }
 
             // the popup explicitly gets the DataContext of this instance.
-            // If there is no DataContext, the TaskbarIcon assigns itself
+            // If there is no DataContext, the TrayIcon assigns itself
             if (popup != null)
             {
                 UpdateDataContext(popup, null, DataContext);
@@ -964,8 +940,8 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// </summary>
         private void OnTaskbarCreated()
         {
-            RemoveTaskbarIcon();
-            CreateTaskbarIcon();
+            RemoveTrayIcon();
+            CreateTrayIcon();
         }
 
 
@@ -973,11 +949,11 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// Creates the taskbar icon. This message is invoked during initialization,
         /// if the taskbar is restarted, and whenever the icon is displayed.
         /// </summary>
-        private void CreateTaskbarIcon()
+        private void CreateTrayIcon()
         {
             lock (lockObject)
             {
-                if (IsTaskbarIconCreated)
+                if (IsTrayIconCreated)
                 {
                     return;
                 }
@@ -1001,26 +977,26 @@ namespace iNKORE.UI.WPF.TrayIcon
                 SetVersion();
                 messageSink.Version = (NotifyIconVersion)iconData.VersionOrTimeout;
 
-                IsTaskbarIconCreated = true;
+                IsTrayIconCreated = true;
             }
         }
 
         /// <summary>
         /// Closes the taskbar icon if required.
         /// </summary>
-        private void RemoveTaskbarIcon()
+        private void RemoveTrayIcon()
         {
             lock (lockObject)
             {
                 // make sure we didn't schedule a creation
 
-                if (!IsTaskbarIconCreated)
+                if (!IsTrayIconCreated)
                 {
                     return;
                 }
 
                 Util.WriteIconData(ref iconData, NotifyCommand.Delete, IconDataMembers.Message);
-                IsTaskbarIconCreated = false;
+                IsTrayIconCreated = false;
             }
         }
 
@@ -1064,7 +1040,7 @@ namespace iNKORE.UI.WPF.TrayIcon
         /// Important: Do not provide destructor in types derived from this class.
         /// </para>
         /// </summary>
-        ~TaskbarIcon()
+        ~TrayIcon()
         {
             Dispose(false);
         }
@@ -1127,7 +1103,7 @@ namespace iNKORE.UI.WPF.TrayIcon
                 messageSink.Dispose();
 
                 // remove icon
-                RemoveTaskbarIcon();
+                RemoveTrayIcon();
             }
         }
 

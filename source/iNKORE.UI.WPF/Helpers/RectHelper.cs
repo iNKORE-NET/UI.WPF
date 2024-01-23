@@ -1,4 +1,4 @@
-﻿using iNKORE.Coreworks.Helpers;
+﻿using iNKORE._Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;

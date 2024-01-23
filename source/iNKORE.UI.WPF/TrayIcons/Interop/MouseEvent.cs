@@ -1,4 +1,4 @@
-﻿namespace iNKORE.UI.WPF.TrayIcon.Interop
+﻿namespace iNKORE.UI.WPF.TrayIcons.Interop
 {
     /// <summary>
     /// Event flags for clicked events.
