@@ -41,7 +41,7 @@ namespace iNKORE.UI.WPF.DragDrop.Icons
         /// <returns>The image to be displayed</returns>
         private static BitmapImage GetImage(string iconName, int size)
         {
-            var uri = new Uri($@"/iNKORE.UI.WPF;component/DragDrop/Icons/{iconName}", UriKind.RelativeOrAbsolute);
+            var uri = new Uri($@"pack://application:,,,/iNKORE.UI.WPF;component/DragDrop/Icons/{iconName}", UriKind.Absolute);
             var icon = new BitmapImage(uri);
             icon.DecodePixelHeight = size;
             icon.DecodePixelWidth = size;

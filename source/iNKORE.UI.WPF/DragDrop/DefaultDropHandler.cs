@@ -34,6 +34,7 @@ namespace iNKORE.UI.WPF.DragDrop
             // do not drop on itself
             var isTreeViewItem = dropInfo.InsertPosition.HasFlag(RelativeInsertPosition.TargetItemCenter)
                                  && dropInfo.VisualTargetItem is TreeViewItem;
+
             if (isTreeViewItem && dropInfo.VisualTargetItem == dropInfo.DragInfo.VisualSourceItem)
             {
                 return false;
@@ -228,11 +229,17 @@ namespace iNKORE.UI.WPF.DragDrop
         /// <inheritdoc />
         public virtual void DragOver(IDropInfo dropInfo)
         {
+            DragOver(dropInfo, true);
+        }
+
+        public static void DragOver(IDropInfo dropInfo, bool canHighlight)
+        {
             if (CanAcceptData(dropInfo))
             {
                 var copyData = ShouldCopyData(dropInfo);
                 dropInfo.Effects = copyData ? DragDropEffects.Copy : DragDropEffects.Move;
-                var isTreeViewItem = dropInfo.InsertPosition.HasFlag(RelativeInsertPosition.TargetItemCenter) && dropInfo.VisualTargetItem is TreeViewItem;
+
+                var isTreeViewItem = dropInfo.InsertPosition.HasFlag(RelativeInsertPosition.TargetItemCenter) && dropInfo.VisualTargetItem is TreeViewItem && canHighlight;
                 dropInfo.DropTargetAdorner = isTreeViewItem ? DropTargetAdorners.Highlight : DropTargetAdorners.Insert;
             }
         }

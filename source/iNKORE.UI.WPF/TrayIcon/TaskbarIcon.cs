@@ -32,6 +32,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Threading;
+using iNKORE.Coreworks.Windows.Helpers;
 using iNKORE.UI.WPF.TrayIcon.Interop;
 using Point = iNKORE.UI.WPF.TrayIcon.Interop.Point;
 
@@ -496,7 +497,10 @@ namespace iNKORE.UI.WPF.TrayIcon
                 var args = RaisePreviewTrayToolTipOpenEvent();
                 if (args.Handled) return;
 
-                TrayToolTipResolved.IsOpen = true;
+                try { if(TrayToolTipResolved.IsOpen) TrayToolTipResolved.IsOpen = false; }
+                catch { }
+                try { TrayToolTipResolved.IsOpen = true; }
+                catch { }
 
                 // raise attached event first
                 if (TrayToolTip != null) RaiseToolTipOpenedEvent(TrayToolTip);
@@ -766,12 +770,12 @@ namespace iNKORE.UI.WPF.TrayIcon
             // (e.g. when left-clicked) opens the context menu at the wrong place if the mouse
             // is moved!
 
-            ContextMenu.Placement = PlacementMode.MousePoint;
+            //ContextMenu.Placement = PlacementMode.MousePoint;
 
             // The following ones will go wrong with high dpi, so we dont use that
-            //ContextMenu.Placement = PlacementMode.AbsolutePoint;
-            //ContextMenu.HorizontalOffset = cursorPosition.X;
-            //ContextMenu.VerticalOffset = cursorPosition.Y;
+            ContextMenu.Placement = PlacementMode.AbsolutePoint;
+            ContextMenu.HorizontalOffset = cursorPosition.X / ScreenDpiHelper.ScaleX;
+            ContextMenu.VerticalOffset = cursorPosition.Y / ScreenDpiHelper.ScaleY;
 
             ContextMenu.IsOpen = true;
 

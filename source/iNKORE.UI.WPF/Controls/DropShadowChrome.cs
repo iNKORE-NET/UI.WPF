@@ -109,6 +109,24 @@ namespace iNKORE.UI.WPF.Controls
             set { SetValue(FillCenterProperty, value); }
         }
 
+        /// <summary>
+        /// DependencyProperty for <see cref="FillCenter" /> property.
+        /// </summary>
+        public static readonly DependencyProperty IsShadowVisibleProperty =
+        DependencyProperty.Register(
+                "IsShadowVisible",
+                typeof(bool),
+                typeof(DropShadowChrome),
+                new FrameworkPropertyMetadata(
+                        true,
+                        FrameworkPropertyMetadataOptions.AffectsRender,
+                        new PropertyChangedCallback(ClearBrushes)));
+
+        public bool IsShadowVisible
+        {
+            get { return (bool)GetValue(IsShadowVisibleProperty); }
+            set { SetValue(IsShadowVisibleProperty, value); }
+        }
 
 
         /// <summary>
@@ -158,194 +176,197 @@ namespace iNKORE.UI.WPF.Controls
         /// </summary>
         protected override void OnRender(DrawingContext drawingContext)
         {
-            CornerRadius cornerRadius = CornerRadius;
-
-            Rect shadowBounds = new Rect(new Point(ShadowDepth, ShadowDepth),
-                             new Size(RenderSize.Width, RenderSize.Height));
-            Color color = Color;
-
-            if (shadowBounds.Width > 0 && shadowBounds.Height > 0 && color.A > 0)
+            if (IsShadowVisible)
             {
-                // The shadow is drawn with a dark center the size of the shadow bounds
-                // deflated by shadow depth on each side.
-                double centerWidth = shadowBounds.Width;
-                double centerHeight = shadowBounds.Height;
+                CornerRadius cornerRadius = CornerRadius;
 
-                // Clamp corner radii to be less than 1/2 the side of the inner shadow bounds 
-                //double maxRadius = Math.Min(centerWidth * 0.5, centerHeight * 0.5);
-                //cornerRadius.TopLeft = Math.Min(cornerRadius.TopLeft, maxRadius);
-                //cornerRadius.TopRight = Math.Min(cornerRadius.TopRight, maxRadius);
-                //cornerRadius.BottomLeft = Math.Min(cornerRadius.BottomLeft, maxRadius);
-                //cornerRadius.BottomRight = Math.Min(cornerRadius.BottomRight, maxRadius);
+                Rect shadowBounds = new Rect(new Point(ShadowDepth, ShadowDepth),
+                                 new Size(RenderSize.Width, RenderSize.Height));
+                Color color = Color;
 
-                // Get the brushes for the 9 regions
-                Brush[] brushes = GetBrushes(color, cornerRadius);
+                if (shadowBounds.Width > 0 && shadowBounds.Height > 0 && color.A > 0)
+                {
+                    // The shadow is drawn with a dark center the size of the shadow bounds
+                    // deflated by shadow depth on each side.
+                    double centerWidth = shadowBounds.Width;
+                    double centerHeight = shadowBounds.Height;
 
-                // Snap grid to device pixels
-                double centerTop = shadowBounds.Top;
-                double centerLeft = shadowBounds.Left;
-                double centerRight = shadowBounds.Right;
-                double centerBottom = shadowBounds.Bottom;
+                    // Clamp corner radii to be less than 1/2 the side of the inner shadow bounds 
+                    //double maxRadius = Math.Min(centerWidth * 0.5, centerHeight * 0.5);
+                    //cornerRadius.TopLeft = Math.Min(cornerRadius.TopLeft, maxRadius);
+                    //cornerRadius.TopRight = Math.Min(cornerRadius.TopRight, maxRadius);
+                    //cornerRadius.BottomLeft = Math.Min(cornerRadius.BottomLeft, maxRadius);
+                    //cornerRadius.BottomRight = Math.Min(cornerRadius.BottomRight, maxRadius);
 
-                // Because of different corner radii there are 6 potential x (or y) lines to snap to
-                double[] guidelineSetX = new double[] { centerLeft,
+                    // Get the brushes for the 9 regions
+                    Brush[] brushes = GetBrushes(color, cornerRadius);
+
+                    // Snap grid to device pixels
+                    double centerTop = shadowBounds.Top;
+                    double centerLeft = shadowBounds.Left;
+                    double centerRight = shadowBounds.Right;
+                    double centerBottom = shadowBounds.Bottom;
+
+                    // Because of different corner radii there are 6 potential x (or y) lines to snap to
+                    double[] guidelineSetX = new double[] { centerLeft,
                                                         centerLeft + cornerRadius.TopLeft,
                                                         centerRight - cornerRadius.TopRight,
                                                         centerLeft + cornerRadius.BottomLeft,
                                                         centerRight - cornerRadius.BottomRight,
                                                         centerRight};
 
-                double[] guidelineSetY = new double[] { centerTop,
+                    double[] guidelineSetY = new double[] { centerTop,
                                                         centerTop + cornerRadius.TopLeft,
                                                         centerTop + cornerRadius.TopRight,
                                                         centerBottom - cornerRadius.BottomLeft,
                                                         centerBottom - cornerRadius.BottomRight,
                                                         centerBottom};
 
-                drawingContext.PushGuidelineSet(new GuidelineSet(guidelineSetX, guidelineSetY));
+                    drawingContext.PushGuidelineSet(new GuidelineSet(guidelineSetX, guidelineSetY));
 
-                // The corner rectangles are drawn drawn ShadowDepth pixels bigger to 
-                // account for the blur
-                cornerRadius.TopLeft = cornerRadius.TopLeft + BlurRadius;
-                cornerRadius.TopRight = cornerRadius.TopRight + BlurRadius;
-                cornerRadius.BottomLeft = cornerRadius.BottomLeft + BlurRadius;
-                cornerRadius.BottomRight = cornerRadius.BottomRight + BlurRadius;
-
-
-                // Draw Top row
-                Rect topLeft = new Rect(shadowBounds.Left - BlurRadius, shadowBounds.Top - BlurRadius, cornerRadius.TopLeft, cornerRadius.TopLeft);
-                drawingContext.DrawRectangle(brushes[TopLeft], null, topLeft);
-
-                double topWidth = shadowBounds.Width - CornerRadius.TopLeft - CornerRadius.TopRight; //guidelineSetX[2] - guidelineSetX[1];
-                if (topWidth > 0)
-                {
-                    Rect top = new Rect(shadowBounds.Left + cornerRadius.TopLeft - BlurRadius, shadowBounds.Top - BlurRadius, topWidth, BlurRadius);
-                    drawingContext.DrawRectangle(brushes[Top], null, top);
-                }
-
-                Rect topRight = new Rect(shadowBounds.Right - cornerRadius.TopRight + BlurRadius, shadowBounds.Top - BlurRadius, cornerRadius.TopRight, cornerRadius.TopRight);
-                drawingContext.DrawRectangle(brushes[TopRight], null, topRight);
-
-                //// Middle row
-                double leftHeight = shadowBounds.Height - CornerRadius.TopLeft - CornerRadius.BottomLeft ;//guidelineSetY[3] - guidelineSetY[1];
-                if (leftHeight > 0)
-                {
-                    Rect left = new Rect(shadowBounds.Left - BlurRadius, shadowBounds.Top + CornerRadius.TopLeft, BlurRadius, leftHeight);
-                    drawingContext.DrawRectangle(brushes[Left], null, left);
-                }
-
-                double rightHeight = shadowBounds.Height - CornerRadius.TopRight - CornerRadius.BottomRight; //guidelineSetY[4] - guidelineSetY[2];
-                if (rightHeight > 0)
-                {
-                    Rect right = new Rect(shadowBounds.Right, shadowBounds.Y + CornerRadius.TopRight, BlurRadius, rightHeight);
-                    drawingContext.DrawRectangle(brushes[Right], null, right);
-                }
-
-                //// Bottom row
-                Rect bottomLeft = new Rect(shadowBounds.Left - BlurRadius, shadowBounds.Bottom - CornerRadius.BottomLeft, cornerRadius.BottomLeft, cornerRadius.BottomLeft);
-                drawingContext.DrawRectangle(brushes[BottomLeft], null, bottomLeft);
-
-                double bottomWidth = shadowBounds.Width - CornerRadius.BottomLeft - CornerRadius.BottomRight;//guidelineSetX[4] - guidelineSetX[3];
-                if (bottomWidth > 0)
-                {
-                    Rect bottom = new Rect(shadowBounds.X + CornerRadius.BottomLeft, shadowBounds.Bottom, bottomWidth, BlurRadius);
-                    drawingContext.DrawRectangle(brushes[Bottom], null, bottom);
-                }
-
-                Rect bottomRight = new Rect(shadowBounds.Right - CornerRadius.BottomRight, shadowBounds.Bottom - CornerRadius.BottomRight, cornerRadius.BottomRight, cornerRadius.BottomRight);
-                drawingContext.DrawRectangle(brushes[BottomRight], null, bottomRight);
+                    // The corner rectangles are drawn drawn ShadowDepth pixels bigger to 
+                    // account for the blur
+                    cornerRadius.TopLeft = cornerRadius.TopLeft + BlurRadius;
+                    cornerRadius.TopRight = cornerRadius.TopRight + BlurRadius;
+                    cornerRadius.BottomLeft = cornerRadius.BottomLeft + BlurRadius;
+                    cornerRadius.BottomRight = cornerRadius.BottomRight + BlurRadius;
 
 
-                // Fill Center
+                    // Draw Top row
+                    Rect topLeft = new Rect(shadowBounds.Left - BlurRadius, shadowBounds.Top - BlurRadius, cornerRadius.TopLeft, cornerRadius.TopLeft);
+                    drawingContext.DrawRectangle(brushes[TopLeft], null, topLeft);
 
-                // Because the heights of the top/bottom rects and widths of the left/right rects are fixed
-                // and the corner rects are drawn with the size of the corner, the center 
-                // may not be a square.  In this case, create a path to fill the area
-
-                // When the target object's corner radius is 0, only need to draw one rect
-                if (FillCenter)
-                {
-                    if (cornerRadius.TopLeft == BlurRadius &&
-                    cornerRadius.TopLeft == cornerRadius.TopRight &&
-                    cornerRadius.TopLeft == cornerRadius.BottomLeft &&
-                    cornerRadius.TopLeft == cornerRadius.BottomRight)
+                    double topWidth = shadowBounds.Width - CornerRadius.TopLeft - CornerRadius.TopRight; //guidelineSetX[2] - guidelineSetX[1];
+                    if (topWidth > 0)
                     {
-                        // All corners of target are 0, render one large rectangle
-                        Rect center = new Rect(shadowBounds.X, shadowBounds.Y, shadowBounds.Width, shadowBounds.Height);
-                        drawingContext.DrawRectangle(brushes[Center], null, center);
+                        Rect top = new Rect(shadowBounds.Left + cornerRadius.TopLeft - BlurRadius, shadowBounds.Top - BlurRadius, topWidth, BlurRadius);
+                        drawingContext.DrawRectangle(brushes[Top], null, top);
                     }
-                    else
+
+                    Rect topRight = new Rect(shadowBounds.Right - cornerRadius.TopRight + BlurRadius, shadowBounds.Top - BlurRadius, cornerRadius.TopRight, cornerRadius.TopRight);
+                    drawingContext.DrawRectangle(brushes[TopRight], null, topRight);
+
+                    //// Middle row
+                    double leftHeight = shadowBounds.Height - CornerRadius.TopLeft - CornerRadius.BottomLeft;//guidelineSetY[3] - guidelineSetY[1];
+                    if (leftHeight > 0)
                     {
-                        // If the corner radius is TL=2, TR=1, BL=0, BR=2 the following shows the shape that needs to be created.
-                        //             _________________
-                        //            |                 |_
-                        //         _ _|                   |
-                        //        |                       |
-                        //        |                    _ _|
-                        //        |                   |   
-                        //        |___________________| 
-                        // The missing corners of the shape are filled with the radial gradients drawn above
-
-                        // Define shape counter clockwise
-                        PathFigure figure = new PathFigure();
-
-                        if (cornerRadius.TopLeft > ShadowDepth)
-                        {
-                            figure.StartPoint = new Point(guidelineSetX[1], guidelineSetY[0]);
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[1], guidelineSetY[1]), true));
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[0], guidelineSetY[1]), true));
-                        }
-                        else
-                        {
-                            figure.StartPoint = new Point(guidelineSetX[0], guidelineSetY[0]);
-                        }
-
-                        if (cornerRadius.BottomLeft > ShadowDepth)
-                        {
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[0], guidelineSetY[3]), true));
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[3], guidelineSetY[3]), true));
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[3], guidelineSetY[5]), true));
-                        }
-                        else
-                        {
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[0], guidelineSetY[5]), true));
-                        }
-
-                        if (cornerRadius.BottomRight > ShadowDepth)
-                        {
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[4], guidelineSetY[5]), true));
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[4], guidelineSetY[4]), true));
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[5], guidelineSetY[4]), true));
-                        }
-                        else
-                        {
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[5], guidelineSetY[5]), true));
-                        }
-
-
-                        if (cornerRadius.TopRight > ShadowDepth)
-                        {
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[5], guidelineSetY[2]), true));
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[2], guidelineSetY[2]), true));
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[2], guidelineSetY[0]), true));
-                        }
-                        else
-                        {
-                            figure.Segments.Add(new LineSegment(new Point(guidelineSetX[5], guidelineSetY[0]), true));
-                        }
-
-                        figure.IsClosed = true;
-                        figure.Freeze();
-
-                        PathGeometry geometry = new PathGeometry();
-                        geometry.Figures.Add(figure);
-                        geometry.Freeze();
-
-                        drawingContext.DrawGeometry(brushes[Center], null, geometry);
+                        Rect left = new Rect(shadowBounds.Left - BlurRadius, shadowBounds.Top + CornerRadius.TopLeft, BlurRadius, leftHeight);
+                        drawingContext.DrawRectangle(brushes[Left], null, left);
                     }
-                }
 
-                drawingContext.Pop();
+                    double rightHeight = shadowBounds.Height - CornerRadius.TopRight - CornerRadius.BottomRight; //guidelineSetY[4] - guidelineSetY[2];
+                    if (rightHeight > 0)
+                    {
+                        Rect right = new Rect(shadowBounds.Right, shadowBounds.Y + CornerRadius.TopRight, BlurRadius, rightHeight);
+                        drawingContext.DrawRectangle(brushes[Right], null, right);
+                    }
+
+                    //// Bottom row
+                    Rect bottomLeft = new Rect(shadowBounds.Left - BlurRadius, shadowBounds.Bottom - CornerRadius.BottomLeft, cornerRadius.BottomLeft, cornerRadius.BottomLeft);
+                    drawingContext.DrawRectangle(brushes[BottomLeft], null, bottomLeft);
+
+                    double bottomWidth = shadowBounds.Width - CornerRadius.BottomLeft - CornerRadius.BottomRight;//guidelineSetX[4] - guidelineSetX[3];
+                    if (bottomWidth > 0)
+                    {
+                        Rect bottom = new Rect(shadowBounds.X + CornerRadius.BottomLeft, shadowBounds.Bottom, bottomWidth, BlurRadius);
+                        drawingContext.DrawRectangle(brushes[Bottom], null, bottom);
+                    }
+
+                    Rect bottomRight = new Rect(shadowBounds.Right - CornerRadius.BottomRight, shadowBounds.Bottom - CornerRadius.BottomRight, cornerRadius.BottomRight, cornerRadius.BottomRight);
+                    drawingContext.DrawRectangle(brushes[BottomRight], null, bottomRight);
+
+
+                    // Fill Center
+
+                    // Because the heights of the top/bottom rects and widths of the left/right rects are fixed
+                    // and the corner rects are drawn with the size of the corner, the center 
+                    // may not be a square.  In this case, create a path to fill the area
+
+                    // When the target object's corner radius is 0, only need to draw one rect
+                    if (FillCenter)
+                    {
+                        if (cornerRadius.TopLeft == BlurRadius &&
+                        cornerRadius.TopLeft == cornerRadius.TopRight &&
+                        cornerRadius.TopLeft == cornerRadius.BottomLeft &&
+                        cornerRadius.TopLeft == cornerRadius.BottomRight)
+                        {
+                            // All corners of target are 0, render one large rectangle
+                            Rect center = new Rect(shadowBounds.X, shadowBounds.Y, shadowBounds.Width, shadowBounds.Height);
+                            drawingContext.DrawRectangle(brushes[Center], null, center);
+                        }
+                        else
+                        {
+                            // If the corner radius is TL=2, TR=1, BL=0, BR=2 the following shows the shape that needs to be created.
+                            //             _________________
+                            //            |                 |_
+                            //         _ _|                   |
+                            //        |                       |
+                            //        |                    _ _|
+                            //        |                   |   
+                            //        |___________________| 
+                            // The missing corners of the shape are filled with the radial gradients drawn above
+
+                            // Define shape counter clockwise
+                            PathFigure figure = new PathFigure();
+
+                            if (cornerRadius.TopLeft > ShadowDepth)
+                            {
+                                figure.StartPoint = new Point(guidelineSetX[1], guidelineSetY[0]);
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[1], guidelineSetY[1]), true));
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[0], guidelineSetY[1]), true));
+                            }
+                            else
+                            {
+                                figure.StartPoint = new Point(guidelineSetX[0], guidelineSetY[0]);
+                            }
+
+                            if (cornerRadius.BottomLeft > ShadowDepth)
+                            {
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[0], guidelineSetY[3]), true));
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[3], guidelineSetY[3]), true));
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[3], guidelineSetY[5]), true));
+                            }
+                            else
+                            {
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[0], guidelineSetY[5]), true));
+                            }
+
+                            if (cornerRadius.BottomRight > ShadowDepth)
+                            {
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[4], guidelineSetY[5]), true));
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[4], guidelineSetY[4]), true));
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[5], guidelineSetY[4]), true));
+                            }
+                            else
+                            {
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[5], guidelineSetY[5]), true));
+                            }
+
+
+                            if (cornerRadius.TopRight > ShadowDepth)
+                            {
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[5], guidelineSetY[2]), true));
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[2], guidelineSetY[2]), true));
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[2], guidelineSetY[0]), true));
+                            }
+                            else
+                            {
+                                figure.Segments.Add(new LineSegment(new Point(guidelineSetX[5], guidelineSetY[0]), true));
+                            }
+
+                            figure.IsClosed = true;
+                            figure.Freeze();
+
+                            PathGeometry geometry = new PathGeometry();
+                            geometry.Figures.Add(figure);
+                            geometry.Freeze();
+
+                            drawingContext.DrawGeometry(brushes[Center], null, geometry);
+                        }
+                    }
+
+                    drawingContext.Pop();
+                }
             }
         }
 

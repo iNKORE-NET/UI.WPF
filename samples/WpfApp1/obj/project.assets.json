@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Yujun Products\\Inkore.UI.WPF\\samples\\WpfApp1\\WpfApp1.csproj",
+      "projectUniqueName": "E:\\Yujun Products\\iNKORE.UI.WPF\\samples\\WpfApp1\\WpfApp1.csproj",
       "projectName": "WpfApp1",
-      "projectPath": "E:\\Yujun Products\\Inkore.UI.WPF\\samples\\WpfApp1\\WpfApp1.csproj",
+      "projectPath": "E:\\Yujun Products\\iNKORE.UI.WPF\\samples\\WpfApp1\\WpfApp1.csproj",
       "packagesPath": "C:\\Users\\Yoojun\\.nuget\\packages\\",
-      "outputPath": "E:\\Yujun Products\\Inkore.UI.WPF\\samples\\WpfApp1\\obj\\",
+      "outputPath": "E:\\Yujun Products\\iNKORE.UI.WPF\\samples\\WpfApp1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -64,7 +64,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.Windows.SDK.NET.Ref",
-            "version": "[10.0.18362.28, 10.0.18362.28]"
+            "version": "[10.0.18362.31, 10.0.18362.31]"
           }
         ],
         "frameworkReferences": {
@@ -78,7 +78,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

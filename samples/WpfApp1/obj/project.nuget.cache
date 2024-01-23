@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CRxa6hDyqqKq67TTEHi36RUsP5+0o375ALWOm1Q7KoxQM9WnPho77vGcTI+UjKDaBDabnG+K6iW+Sz196EpiFA==",
+  "dgSpecHash": "i3EUg+wojqO8kwjU817VP7Bl/5EvTAMSwMRrAcI34W6I1G/IEhv0Udq2kxrMtT9Y9HXCzvn3iFuP0ByWhQVGsA==",
   "success": true,
-  "projectFilePath": "E:\\Yujun Products\\Inkore.UI.WPF\\samples\\WpfApp1\\WpfApp1.csproj",
+  "projectFilePath": "E:\\Yujun Products\\iNKORE.UI.WPF\\samples\\WpfApp1\\WpfApp1.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Yoojun\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.18362.28\\microsoft.windows.sdk.net.ref.10.0.18362.28.nupkg.sha512"
+    "C:\\Users\\Yoojun\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.18362.31\\microsoft.windows.sdk.net.ref.10.0.18362.31.nupkg.sha512"
   ],
   "logs": []
 }
