@@ -5,7 +5,9 @@ VisualStudioVersion = 17.6.33717.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iNKORE.UI.WPF", "source\iNKORE.UI.WPF\iNKORE.UI.WPF.csproj", "{BE12577B-8E19-4255-A07D-E45EC64F8A48}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp1", "samples\WpfApp1\WpfApp1.csproj", "{6EBBC925-2135-40AB-AF6F-96FF5C418F98}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D6C9A7D4-090F-4477-BC90-E4BA6CE3A00F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp1", "source\samples\WpfApp1\WpfApp1.csproj", "{B58816CF-AC94-4096-89A0-4EE78167DECB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,13 +19,16 @@ Global
 		{BE12577B-8E19-4255-A07D-E45EC64F8A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE12577B-8E19-4255-A07D-E45EC64F8A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE12577B-8E19-4255-A07D-E45EC64F8A48}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EBBC925-2135-40AB-AF6F-96FF5C418F98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EBBC925-2135-40AB-AF6F-96FF5C418F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EBBC925-2135-40AB-AF6F-96FF5C418F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EBBC925-2135-40AB-AF6F-96FF5C418F98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B58816CF-AC94-4096-89A0-4EE78167DECB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B58816CF-AC94-4096-89A0-4EE78167DECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B58816CF-AC94-4096-89A0-4EE78167DECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B58816CF-AC94-4096-89A0-4EE78167DECB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B58816CF-AC94-4096-89A0-4EE78167DECB} = {D6C9A7D4-090F-4477-BC90-E4BA6CE3A00F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {875DD1B1-3A15-45B9-8736-E4F34C9619F8}
