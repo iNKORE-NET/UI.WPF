@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace WPFMediaKit
+namespace iNKORE.UI.WPF.DirectX
 {
     /// <summary>
     /// A logger.

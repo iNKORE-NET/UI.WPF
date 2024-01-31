@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Permissions;
 
-namespace WPFMediaKit.MediaFoundation
+namespace iNKORE.UI.WPF.DirectX.MediaFoundation
 {
     public class COMUtil
     {

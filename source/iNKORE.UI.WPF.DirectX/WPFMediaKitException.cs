@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace WPFMediaKit
+namespace iNKORE.UI.WPF.DirectX
 {
-    public class WPFMediaKitException : Exception
+    public class DirectXException : Exception
     {
-        public WPFMediaKitException()
+        public DirectXException()
             : base()
         {
         }
 
-        public WPFMediaKitException(string message)
+        public DirectXException(string message)
             : base(message)
         {
         }
 
-        public WPFMediaKitException(string message, Exception innerException)
+        public DirectXException(string message, Exception innerException)
             : base(message, innerException)
         {
         }
 
-        protected WPFMediaKitException(SerializationInfo info, StreamingContext context)
+        protected DirectXException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

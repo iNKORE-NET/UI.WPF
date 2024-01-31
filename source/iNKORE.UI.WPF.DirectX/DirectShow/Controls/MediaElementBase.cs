@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-using WPFMediaKit.DirectShow.MediaPlayers;
+using iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers;
 
-namespace WPFMediaKit.DirectShow.Controls
+namespace iNKORE.UI.WPF.DirectX.DirectShow.Controls
 {
     /// <summary>
     /// The MediaElementBase is the base WPF control for
@@ -289,7 +289,7 @@ namespace WPFMediaKit.DirectShow.Controls
 
             if (MediaPlayerBase == null)
             {
-                throw new WPFMediaKitException("OnRequestMediaPlayer cannot return null");
+                throw new DirectXException("OnRequestMediaPlayer cannot return null");
             }
 
             /* Hook into the normal .NET events */

@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using DirectShowLib;
 
-namespace WPFMediaKit.DirectShow.MediaPlayers
+namespace iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers
 {
     /// <summary>
     /// The MediaSeekingPlayer adds media seeking functionality to

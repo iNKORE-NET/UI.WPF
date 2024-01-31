@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using DirectShowLib;
 
-namespace WPFMediaKit.DirectX
+namespace iNKORE.UI.WPF.DirectX.DirectX
 {
     [StructLayout(LayoutKind.Sequential)]
     public class RECT

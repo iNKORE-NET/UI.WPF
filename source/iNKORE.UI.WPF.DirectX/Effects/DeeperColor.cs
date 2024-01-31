@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
-namespace WPFMediaKit.Effects
+namespace iNKORE.UI.WPF.DirectX.Effects
 {
     /// <summary>
     /// This is a WPF pixel shader effect that will scale 16-235 HD-TV pixel output to

@@ -3,9 +3,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading;
 using DirectShowLib;
-using WPFMediaKit.DirectX;
+using iNKORE.UI.WPF.DirectX.DirectX;
 
-namespace WPFMediaKit.DirectShow.MediaPlayers
+namespace iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers
 {
     /// <summary>
     /// The Vmr9Allocator is a custom allocator for the VideoMixingRenderer9
@@ -112,7 +112,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
             if (m_d3dEx == null && m_d3d == null)
             {
                 string hrStr = hr == 0 ? "" : $"({hr:X})";
-                throw new WPFMediaKitException($"Could not create IDirect3D9 {hrStr}. " + VMR9_ERROR);
+                throw new DirectXException($"Could not create IDirect3D9 {hrStr}. " + VMR9_ERROR);
             }
 
             CreateDevice();
@@ -568,7 +568,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
             }
 
             if (dev == IntPtr.Zero)
-                throw new WPFMediaKitException($"Cannot create D3D device ({hr:X}). Do you have D3D acceleration enabled for your graphics card?");
+                throw new DirectXException($"Cannot create D3D device ({hr:X}). Do you have D3D acceleration enabled for your graphics card?");
 
             m_device = (IDirect3DDevice9)Marshal.GetObjectForIUnknown(dev);
             Marshal.Release(dev);

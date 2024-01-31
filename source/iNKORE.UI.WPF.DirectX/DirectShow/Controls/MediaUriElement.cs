@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
-using WPFMediaKit.DirectShow.MediaPlayers;
+using iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers;
 
-namespace WPFMediaKit.DirectShow.Controls
+namespace iNKORE.UI.WPF.DirectX.DirectShow.Controls
 {
     /// <summary>
     /// The MediaUriElement is a WPF control that plays media of a given

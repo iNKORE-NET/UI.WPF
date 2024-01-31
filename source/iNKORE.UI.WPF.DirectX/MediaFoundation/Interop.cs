@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace WPFMediaKit.MediaFoundation.Interop
+namespace iNKORE.UI.WPF.DirectX.MediaFoundation.Interop
 {
     [ComImport, SuppressUnmanagedCodeSecurity,
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),

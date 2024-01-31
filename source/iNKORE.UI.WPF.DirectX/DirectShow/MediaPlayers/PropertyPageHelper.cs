@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using DirectShowLib;
 
-namespace WPFMediaKit.DirectShow.MediaPlayers
+namespace iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers
 {
     public class PropertyPageHelper : IDisposable
     {

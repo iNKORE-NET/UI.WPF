@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading;
 
-namespace WPFMediaKit.Threading
+namespace iNKORE.UI.WPF.DirectX.Threading
 {
     public class ShutdownFinishedEventArgs : EventArgs
     {

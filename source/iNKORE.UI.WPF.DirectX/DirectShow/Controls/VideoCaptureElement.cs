@@ -2,10 +2,10 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
-using WPFMediaKit.DirectShow.MediaPlayers;
+using iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers;
 using DirectShowLib;
 
-namespace WPFMediaKit.DirectShow.Controls
+namespace iNKORE.UI.WPF.DirectX.DirectShow.Controls
 {
     /// <summary>
     /// The VideoCaptureElement is a WPF control that

@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-namespace WPFMediaKit.Threading
+namespace iNKORE.UI.WPF.DirectX.Threading
 {
     public abstract class WorkDispatcherObject
     {

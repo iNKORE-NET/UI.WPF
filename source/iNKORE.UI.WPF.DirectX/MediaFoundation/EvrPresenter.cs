@@ -4,12 +4,12 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 using DirectShowLib;
-using WPFMediaKit.DirectShow.MediaPlayers;
-using WPFMediaKit.MediaFoundation.Interop;
+using iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers;
+using iNKORE.UI.WPF.DirectX.MediaFoundation.Interop;
 
 #endregion
 
-namespace WPFMediaKit.MediaFoundation
+namespace iNKORE.UI.WPF.DirectX.MediaFoundation
 {
     #region Custom COM Types
     /*
@@ -236,7 +236,7 @@ namespace WPFMediaKit.MediaFoundation
             catch (Exception ex)
             {
                 COMUtil.TryFinalRelease(ref presenter);
-                throw new WPFMediaKitException("Could not create EnhancedVideoRenderer", ex);
+                throw new DirectXException("Could not create EnhancedVideoRenderer", ex);
             }
 
             return evrPresenter;

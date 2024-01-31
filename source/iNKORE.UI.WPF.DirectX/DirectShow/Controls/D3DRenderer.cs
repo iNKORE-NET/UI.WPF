@@ -7,9 +7,9 @@ using System.Windows.Data;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
-using WPFMediaKit.Effects;
+using iNKORE.UI.WPF.DirectX.Effects;
 
-namespace WPFMediaKit.DirectShow.Controls
+namespace iNKORE.UI.WPF.DirectX.DirectShow.Controls
 {
     /// <summary>
     /// The D3DRenderer class provides basic functionality needed

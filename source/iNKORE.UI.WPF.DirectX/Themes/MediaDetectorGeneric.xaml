@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:Controls="clr-namespace:WPFMediaKit.DirectShow.Controls">
+                    xmlns:Controls="clr-namespace:iNKORE.UI.WPF.DirectX.DirectShow.Controls">
     <Style TargetType="{x:Type Controls:MediaDetectorElement}">
         <Setter Property="Template">
             <Setter.Value>

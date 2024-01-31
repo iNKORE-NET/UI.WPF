@@ -3,10 +3,10 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-using WPFMediaKit.DirectShow.MediaPlayers;
+using iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers;
 #endregion
 
-namespace WPFMediaKit.DirectShow.Controls
+namespace iNKORE.UI.WPF.DirectX.DirectShow.Controls
 {
     public class DvdPlayerElement : MediaSeekingElement
     {

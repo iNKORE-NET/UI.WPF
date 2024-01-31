@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace WPFMediaKit
+namespace iNKORE.UI.WPF.DirectX
 {
     /// <summary>
     /// Log manager for the WPF-MediaKit. Set <see cref="LoggerFunc"/> to change the logging.
     /// </summary>
-    public static class LogManager
+    internal static class LogManager
     {
         /// <summary>
         /// Main func to get an <see cref="ILog"/> for the provided logger name. Default is set to <see cref="DebugTraceLog"/>.

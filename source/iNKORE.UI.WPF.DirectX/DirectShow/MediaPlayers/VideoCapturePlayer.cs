@@ -4,7 +4,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using DirectShowLib;
 
-namespace WPFMediaKit.DirectShow.MediaPlayers
+namespace iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers
 {
     public class VideoSampleArgs : EventArgs
     {
@@ -312,7 +312,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
 
                 /* If we have a null capture device, we have an issue */
                 if (m_captureDevice == null)
-                    throw new WPFMediaKitException(string.Format("Capture device {0} not found or could not be created", VideoCaptureSource));
+                    throw new DirectXException(string.Format("Capture device {0} not found or could not be created", VideoCaptureSource));
 
                 if (UseYuv && !EnableSampleGrabbing)
                 {

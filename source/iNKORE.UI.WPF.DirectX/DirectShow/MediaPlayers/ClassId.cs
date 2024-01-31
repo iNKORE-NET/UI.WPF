@@ -3,7 +3,7 @@
 
 // Code of MediaPortal (www.team-mediaportal.com)
 
-namespace WPFMediaKit.DirectShow.MediaPlayers
+namespace iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers
 {
     public class ClassId
     {

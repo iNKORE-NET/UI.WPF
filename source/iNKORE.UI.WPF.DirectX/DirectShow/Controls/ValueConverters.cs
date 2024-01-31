@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using WPFMediaKit.DirectShow.MediaPlayers;
+using iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers;
 
-namespace WPFMediaKit.DirectShow.Controls
+namespace iNKORE.UI.WPF.DirectX.DirectShow.Controls
 {
     /// <summary>
     /// Converter used to convert MediaTime format to seconds

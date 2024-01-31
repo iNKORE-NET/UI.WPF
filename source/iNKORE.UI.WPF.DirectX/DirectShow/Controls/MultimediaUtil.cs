@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DirectShowLib;
 
-namespace WPFMediaKit.DirectShow.Controls
+namespace iNKORE.UI.WPF.DirectX.DirectShow.Controls
 {
     public class MultimediaUtil
     {

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using DirectShowLib;
 #endregion
 
-namespace WPFMediaKit.DirectShow.MediaPlayers
+namespace iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers
 {
     [ComImport, Guid("04FE9017-F873-410E-871E-AB91661A4EF7")]
     internal class FFDShow
@@ -200,8 +200,9 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
                     filters[0].QueryFilterInfo(out filterInfo);
 
 
-
+#if !NETCOREAPP
                     filterOutputString += string.Format("{0:X8}", Marshal.GetIUnknownForObjectInContext(filters[0]).ToInt32()) + " ";
+#endif
 
                     filterOutputString += filterInfo.achName + Environment.NewLine;
 
@@ -224,8 +225,11 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
                         if (pinInfo.dir == PinDirection.Output)
                             prefix = "[Out] ";
 
+#if !NETCOREAPP
 
                         filterOutputString += string.Format("{0:X8}", Marshal.GetIUnknownForObjectInContext(pins[0]).ToInt32()) + " ";
+
+#endif
                         filterOutputString += prefix + pinInfo.name + Environment.NewLine;
 
                         Marshal.ReleaseComObject(pins[0]);
@@ -277,12 +281,12 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
                 m_graph = new FilterGraphNoThread() as IGraphBuilder;
 
                 if (m_graph == null)
-                    throw new WPFMediaKitException("Could not create a graph");
+                    throw new DirectXException("Could not create a graph");
 
                 var filterGraph = m_graph as IFilterGraph2;
 
                 if (filterGraph == null)
-                    throw new WPFMediaKitException("Could not QueryInterface for the IFilterGraph2");
+                    throw new DirectXException("Could not QueryInterface for the IFilterGraph2");
 
                 IBaseFilter sourceFilter;
                 int hr;
@@ -303,7 +307,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
 
                 sourceFilter = DirectShowUtil.AddFilterToGraph(m_graph, SplitterSource, Guid.Empty);
                 if (sourceFilter == null)
-                    throw new WPFMediaKitException("Could not add SplitterSource to graph.");
+                    throw new DirectXException("Could not add SplitterSource to graph.");
 
                 IFileSourceFilter interfaceFile = (IFileSourceFilter)sourceFilter;
                 hr = interfaceFile.Load(fileSource, null);
@@ -410,7 +414,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
                 Marshal.ReleaseComObject(sourceFilter);
 
                 if (pinsRendered == 0)
-                    throw new WPFMediaKitException("Could not render any streams from the source Uri");
+                    throw new DirectXException("Could not render any streams from the source Uri");
 
 #if DEBUG
                 /* Adds the GB to the ROT so we can view
@@ -462,7 +466,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
                 m_graph = new FilterGraphNoThread() as IGraphBuilder;
 
                 if (m_graph == null)
-                    throw new WPFMediaKitException("Could not create a graph");
+                    throw new DirectXException("Could not create a graph");
 
                 // use prefered audio renderer
                 try
@@ -479,7 +483,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
                 var filterGraph = m_graph as IFilterGraph2;
 
                 if (filterGraph == null)
-                    throw new WPFMediaKitException("Could not QueryInterface for the IFilterGraph2");
+                    throw new DirectXException("Could not QueryInterface for the IFilterGraph2");
 
                 IBaseFilter sourceFilter;
 
@@ -541,7 +545,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
                 Marshal.ReleaseComObject(sourceFilter);
 
                 if (pinsRendered == 0)
-                    throw new WPFMediaKitException("Could not render any streams from the source Uri");
+                    throw new DirectXException("Could not render any streams from the source Uri");
 
 #if DEBUG
                 /* Adds the GB to the ROT so we can view

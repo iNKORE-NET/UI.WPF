@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using WPFMediaKit.DirectShow.MediaPlayers;
+using iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers;
 
-namespace WPFMediaKit.DirectShow.Controls
+namespace iNKORE.UI.WPF.DirectX.DirectShow.Controls
 {
     /// <summary>
     /// The MediaSeekingElement adds media seeking functionality to
@@ -262,7 +262,7 @@ namespace WPFMediaKit.DirectShow.Controls
             base.InitializeMediaPlayer();
 
             if (MediaSeekingPlayer == null)
-                throw new WPFMediaKitException("MediaSeekingPlayer is null or does not inherit MediaSeekingPlayer");
+                throw new DirectXException("MediaSeekingPlayer is null or does not inherit MediaSeekingPlayer");
 
             /* Let us know when the media position has changed */
             MediaSeekingPlayer.MediaPositionChanged += OnMediaPlayerPositionChangedPrivate;

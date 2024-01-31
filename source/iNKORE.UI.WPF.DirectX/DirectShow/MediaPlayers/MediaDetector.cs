@@ -12,7 +12,7 @@ using DirectShowLib.DES;
 using PixelFormat=System.Drawing.Imaging.PixelFormat;
 using Size=System.Windows.Size;
 
-namespace WPFMediaKit.DirectShow.MediaPlayers
+namespace iNKORE.UI.WPF.DirectX.DirectShow.MediaPlayers
 {
     /// <summary>
     /// The MediaDetector class allows to query meta data from audio/video media files.
@@ -214,7 +214,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
             catch (Exception ex)
             {
                 FreeResources();
-                throw new WPFMediaKitException("Failed to load " + filename, ex);
+                throw new DirectXException("Failed to load " + filename, ex);
             }
         }
 
@@ -335,10 +335,10 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
             const int BITS_PER_PIXEL = 3;
 
             if (string.IsNullOrEmpty(m_filename))
-                throw new WPFMediaKitException("A media file must be successfully loaded first.");
+                throw new DirectXException("A media file must be successfully loaded first.");
 
             if (!HasVideo)
-                throw new WPFMediaKitException("The media does not have a video stream");
+                throw new DirectXException("The media does not have a video stream");
 
             double secondsPos = position.TotalSeconds;
 
