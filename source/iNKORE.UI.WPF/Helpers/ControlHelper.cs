@@ -200,5 +200,10 @@ namespace iNKORE.UI.WPF.Helpers
                     return e.Key;
             }
         }
+
+        public static object? FindTemplateName(this Control control, string name)
+        {
+            return control.Template?.FindName(name, control);
+        }
     }
 }

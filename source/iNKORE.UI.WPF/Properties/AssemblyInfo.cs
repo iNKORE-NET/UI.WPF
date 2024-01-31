@@ -20,7 +20,7 @@ using System.Windows.Markup;
 [assembly: AssemblyProduct("iNKORE.UI.WPF")]
 [assembly: AssemblyCopyright("Copyright © iNKORE! 2023")]
 [assembly: AssemblyTrademark("iNKORE!")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0")]
 [assembly: AssemblyCulture("")]
 
 [assembly: XmlnsPrefix("http://schemas.inkore.net/lib/ui/wpf", "ikw")]
@@ -28,5 +28,6 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.Converters")]
 [assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.Controls")]
 [assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.ColorPicker")]
-[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.TrayIconss")]
+[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.TrayIcons")]
 [assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.DragDrop")]
+[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.Helpers")]
