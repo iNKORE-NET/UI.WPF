@@ -1295,7 +1295,7 @@ namespace iNKORE.UI.WPF.Controls
         /// <summary>
         /// Collection that contains the cached containers. Always emtpy if <see cref="IsRecycling"/> is false.
         /// </summary>
-        public IReadOnlyCollection<UIElement> CachedContainers => cachedContainers;
+        public IReadOnlyCollection<UIElement> CachedContainers => cachedContainers.ToArray();
 
         private readonly Dictionary<object, UIElement> realizedContainers = new Dictionary<object, UIElement>();
 

@@ -165,19 +165,6 @@ namespace iNKORE.UI.WPF.Helpers
             catch { return null; }
         }
 
-
-        public static StrokeCollection CopyCollection(this StrokeCollection collection)
-        {
-            StrokeCollection c = new StrokeCollection();
-
-            foreach (var item in collection)
-            {
-                c.Add(item);
-            }
-
-            return c;
-        }
-
         public static TextRange GetFullRange(this RichTextBox box)
         {
             return new TextRange(box.Document.ContentStart, box.Document.ContentEnd);
@@ -201,7 +188,7 @@ namespace iNKORE.UI.WPF.Helpers
             }
         }
 
-        public static object? FindTemplateName(this Control control, string name)
+        public static object? FindNameFromTemplate(this Control control, string name)
         {
             return control.Template?.FindName(name, control);
         }
