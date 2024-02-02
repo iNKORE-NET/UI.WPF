@@ -9,16 +9,16 @@ using System.Windows.Media;
 
 namespace iNKORE.UI.WPF.Converters
 {
-    public class StringToFontFamilyConverter : IValueConverter
+    public class StringToFontFamilyConverter : AdvancedValueConverterBase<string, FontFamily>
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override FontFamily DoConvert(string from)
         {
-            return new FontFamily(value as string);
+            return new FontFamily(from);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public override string DoConvertBack(FontFamily to)
         {
-            return value is FontFamily ? (value as FontFamily).Source : "";
+            return to.Source;
         }
     }
 }

@@ -9,7 +9,7 @@
              d:DesignHeight="380" d:DesignWidth="200" x:Name="uc">
     <UserControl.Resources>
         <ResourceDictionary>
-            <converters:BoolToInvertedBoolConverter x:Key="BoolToInvertedBoolConverter" />
+            <converters:BoolInversionConverter x:Key="BoolToInvertedBoolConverter" />
             <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Colors.xaml"/>

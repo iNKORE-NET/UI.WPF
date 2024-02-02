@@ -5,8 +5,7 @@ using System.Windows.Data;
 
 namespace iNKORE.UI.WPF.Converters
 {
-    [ValueConversion(typeof(bool), typeof(Visibility))]
-    class BoolToVisibilityConverter : DependencyObject, IValueConverter
+    class BoolToVisibilityConverter : AdvancedValueConverterBase<bool, Visibility>
     {
         public static DependencyProperty InvertProperty =
             DependencyProperty.Register(nameof(Invert), typeof(bool), typeof(BoolToVisibilityConverter),
@@ -18,15 +17,58 @@ namespace iNKORE.UI.WPF.Converters
             set => SetValue(InvertProperty, value);
         }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public static DependencyProperty VisibilityToTrueProperty =
+            DependencyProperty.Register(nameof(VisibilityToTrue), typeof(Visibility), typeof(BoolToVisibilityConverter),
+                new PropertyMetadata(Visibility.Visible));
+
+        public Visibility VisibilityToTrue
         {
-            bool actualValue = (bool)value ^ Invert;
-            return actualValue ? Visibility.Visible : Visibility.Hidden;
+            get => (Visibility)GetValue(VisibilityToTrueProperty);
+            set => SetValue(VisibilityToTrueProperty, value);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public static DependencyProperty VisibilityToFalseProperty =
+            DependencyProperty.Register(nameof(VisibilityToFalse), typeof(Visibility), typeof(BoolToVisibilityConverter),
+                new PropertyMetadata(Visibility.Hidden));
+
+        public Visibility VisibilityToFalse
         {
-            throw new NotImplementedException();
+            get => (Visibility)GetValue(VisibilityToFalseProperty);
+            set => SetValue(VisibilityToFalseProperty, value);
+        }
+
+
+        public override Visibility DoConvert(bool from)
+        {
+            bool actualValue = from ^ Invert;
+            return actualValue ? VisibilityToTrue : VisibilityToFalse;
+        }
+
+        public override bool DoConvertBack(Visibility to)
+        {
+            if (to == VisibilityToTrue)
+            {
+                return InvertBool(true, Invert);
+            }
+            else if (to == VisibilityToFalse)
+            {
+                return InvertBool(false, Invert);
+            }
+
+            return false;
+        }
+
+
+        public static bool InvertBool(bool value, bool invert)
+        {
+            if(invert)
+            {
+                return !value;
+            }
+            else
+            {
+                return value;
+            }
         }
     }
 }

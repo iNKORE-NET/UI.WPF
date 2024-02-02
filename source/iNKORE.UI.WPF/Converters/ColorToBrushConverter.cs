@@ -5,35 +5,27 @@ using System.Windows.Media;
 
 namespace iNKORE.UI.WPF.Converters
 {
-    [ValueConversion(typeof(Color), typeof(SolidColorBrush))]
-    public class ColorToBrushConverter : IValueConverter
+    public class ColorToBrushConverter : AdvancedValueConverterBase<Color, SolidColorBrush>
     {
         public bool FreezeBrushes { get; set; } = false;
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+
+        public override SolidColorBrush DoConvert(Color from)
         {
-            if (value is Color color)
+            var brush = new SolidColorBrush(from);
+
+            if (FreezeBrushes && brush.CanFreeze)
             {
-                var brush = new SolidColorBrush(color);
-
-                if(FreezeBrushes && brush.CanFreeze)
-                {
-                    brush.Freeze();
-                }
-
-                return brush;
+                brush.Freeze();
             }
-            return null;
+
+            return brush;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is SolidColorBrush brush)
-            {
-                return brush.Color;
-            }
 
-            return null;
+        public override Color DoConvertBack(SolidColorBrush to)
+        {
+            return to.Color;
         }
 
         //public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

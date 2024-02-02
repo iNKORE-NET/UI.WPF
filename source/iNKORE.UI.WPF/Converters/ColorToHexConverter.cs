@@ -8,8 +8,7 @@ using System.Windows.Media;
 
 namespace iNKORE.UI.WPF.Converters
 {
-    [ValueConversion(typeof(Color), typeof(string))]
-    internal class ColorToHexConverter : DependencyObject, IValueConverter
+    public class ColorToHexConverter : AdvancedValueConverterBase<Color, string>
     {
         public static DependencyProperty ShowAlphaProperty =
             DependencyProperty.Register(nameof(ShowAlpha), typeof(bool), typeof(ColorToHexConverter),
@@ -20,6 +19,17 @@ namespace iNKORE.UI.WPF.Converters
             get => (bool)GetValue(ShowAlphaProperty);
             set => SetValue(ShowAlphaProperty, value);
         }
+
+        public static DependencyProperty DefaultResultProperty =
+            DependencyProperty.Register(nameof(DefaultResult), typeof(Color), typeof(ColorToHexConverter),
+                new PropertyMetadata(Colors.Transparent));
+
+        public Color DefaultResult
+        {
+            get => (Color)GetValue(DefaultResultProperty);
+            set => SetValue(DefaultResultProperty, value);
+        }
+
 
         public event EventHandler OnShowAlphaChange;
 
@@ -33,17 +43,18 @@ namespace iNKORE.UI.WPF.Converters
             ((ColorToHexConverter)d).RaiseShowAlphaChange();
         }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override string DoConvert(Color from)
         {
             if (!ShowAlpha)
-                return ConvertNoAlpha(value);
-            return ((Color)value).ToString();
+                return ConvertNoAlpha(from);
+            return from.ToString();
         }
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+
+        public override Color DoConvertBack(string to)
         {
             if (!ShowAlpha)
-                return ConvertBackNoAlpha(value);
-            string text = (string)value;
+                return ConvertBackNoAlpha(to);
+            string text = to;
             text = Regex.Replace(text.ToUpperInvariant(), @"[^0-9A-F]", "");
             StringBuilder final = new StringBuilder();
             if (text.Length == 3) //short hex with no alpha
@@ -64,22 +75,22 @@ namespace iNKORE.UI.WPF.Converters
             }
             try
             {
-                return ColorConverter.ConvertFromString(final.ToString());
+                return (Color)ColorConverter.ConvertFromString(final.ToString());
             }
             catch (Exception)
             {
-                return DependencyProperty.UnsetValue;
+                return DefaultResult;
             }
         }
 
-        public object ConvertNoAlpha(object value)
+
+        public string ConvertNoAlpha(Color value)
         {
-            return "#" + ((Color)value).ToString().Substring(3, 6);
+            return "#" + value.ToString().Substring(3, 6);
         }
 
-        public object ConvertBackNoAlpha(object value)
+        public Color ConvertBackNoAlpha(string text)
         {
-            string text = (string)value;
             text = Regex.Replace(text.ToUpperInvariant(), @"[^0-9A-F]", "");
             StringBuilder final = new StringBuilder();
             if (text.Length == 3) //short hex
@@ -88,11 +99,11 @@ namespace iNKORE.UI.WPF.Converters
             }
             else if (text.Length == 4)
             {
-                return DependencyProperty.UnsetValue;
+                return DefaultResult;
             }
             else if (text.Length > 6)
             {
-                return DependencyProperty.UnsetValue;
+                return DefaultResult;
             }
             else //regular hex
             {
@@ -100,11 +111,11 @@ namespace iNKORE.UI.WPF.Converters
             }
             try
             {
-                return ColorConverter.ConvertFromString(final.ToString());
+                return (Color)ColorConverter.ConvertFromString(final.ToString());
             }
             catch (Exception)
             {
-                return DependencyProperty.UnsetValue;
+                return DefaultResult;
             }
         }
     }

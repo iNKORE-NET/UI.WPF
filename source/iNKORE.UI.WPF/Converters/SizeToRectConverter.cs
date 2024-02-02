@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace iNKORE.UI.WPF.Converters
 {
-    internal class SizeToRectConverter : IMultiValueConverter
+    public class SizeToRectConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

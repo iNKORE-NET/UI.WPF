@@ -98,7 +98,7 @@ namespace iNKORE.UI.WPF.Converters
         }
     }
 
-    internal class NegativeMarginConverter : IValueConverter
+    public class NegativeMarginConverter : IValueConverter
     {
         public double Multiple { get; set; } = -1d;
 

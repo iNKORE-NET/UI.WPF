@@ -20,7 +20,7 @@ using System.Windows.Markup;
 [assembly: AssemblyProduct("iNKORE.UI.WPF")]
 [assembly: AssemblyCopyright("Copyright © iNKORE! 2023")]
 [assembly: AssemblyTrademark("iNKORE!")]
-[assembly: AssemblyVersion("1.1.0")]
+[assembly: AssemblyVersion("1.2.0")]
 [assembly: AssemblyCulture("")]
 
 [assembly: XmlnsPrefix("http://schemas.inkore.net/lib/ui/wpf", "ikw")]
