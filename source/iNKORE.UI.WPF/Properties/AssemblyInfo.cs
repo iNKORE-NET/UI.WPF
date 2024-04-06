@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using iNKORE.UI.WPF.Helpers;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Markup;
@@ -18,16 +19,16 @@ using System.Windows.Markup;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("iNKORE Studios")]
 [assembly: AssemblyProduct("iNKORE.UI.WPF")]
-[assembly: AssemblyCopyright("Copyright © iNKORE! 2023")]
+[assembly: AssemblyCopyright("Copyright © iNKORE! 2024")]
 [assembly: AssemblyTrademark("iNKORE!")]
-[assembly: AssemblyVersion("1.2.0")]
+[assembly: AssemblyVersion("1.2.3")]
 [assembly: AssemblyCulture("")]
 
-[assembly: XmlnsPrefix("http://schemas.inkore.net/lib/ui/wpf", "ikw")]
-[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF")]
-[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.Converters")]
-[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.Controls")]
-[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.ColorPicker")]
-[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.TrayIcons")]
-[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.DragDrop")]
-[assembly: XmlnsDefinition("http://schemas.inkore.net/lib/ui/wpf", "iNKORE.UI.WPF.Helpers")]
+[assembly: XmlnsPrefix(Extensions.XmlNamespace, "ikw")]
+[assembly: XmlnsDefinition(Extensions.XmlNamespace, "iNKORE.UI.WPF")]
+[assembly: XmlnsDefinition(Extensions.XmlNamespace, "iNKORE.UI.WPF.Converters")]
+[assembly: XmlnsDefinition(Extensions.XmlNamespace, "iNKORE.UI.WPF.Controls")]
+[assembly: XmlnsDefinition(Extensions.XmlNamespace, "iNKORE.UI.WPF.ColorPicker")]
+[assembly: XmlnsDefinition(Extensions.XmlNamespace, "iNKORE.UI.WPF.TrayIcons")]
+[assembly: XmlnsDefinition(Extensions.XmlNamespace, "iNKORE.UI.WPF.DragDrop")]
+[assembly: XmlnsDefinition(Extensions.XmlNamespace, "iNKORE.UI.WPF.Helpers")]

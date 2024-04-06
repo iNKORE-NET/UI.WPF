@@ -12,6 +12,8 @@ namespace iNKORE.UI.WPF.Helpers
 {
     public static class Extensions
     {
+        public const string XmlNamespace = "http://schemas.inkore.net/lib/ui/wpf";
+
         /// <summary>
         /// Attach this property to a VirtualizingStackPanel as well as its containing ListView
         /// to enable per-pixel scrolling. Uses ScrollUnitProperty (.NET Framework 4.5 and later)
