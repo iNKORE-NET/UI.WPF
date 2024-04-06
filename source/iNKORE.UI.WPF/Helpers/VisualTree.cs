@@ -4,7 +4,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace iNKORE.UI.WPF.Helpers
@@ -226,5 +231,123 @@ namespace iNKORE.UI.WPF.Helpers
                 parent = VisualTreeHelper.GetParent(parent);
             }
         }
+
+        public static bool DetachFromParent(this FrameworkElement element, DependencyObject parent)
+        {
+            try
+            {
+                if (parent is Panel parent_Panel)
+                {
+                    parent_Panel.Children.Remove(element);
+                    return true;
+                }
+                else if (parent is Decorator parent_Decorator)
+                {
+                    if(parent_Decorator.Child == element)
+                    {
+                        parent_Decorator.Child = null;
+                        return true;
+                    }
+                }
+                else if (parent is ContentControl parent_ContentControl)
+                {
+                    parent_ContentControl.Content = null;
+                    return true;
+                }
+                else if (parent is ContentPresenter parent_ContentPresenter)
+                {
+                    parent_ContentPresenter.Content = null;
+                    return true;
+                }
+
+                else if (parent is Popup parent_Popup)
+                {
+                    parent_Popup.Child = null;
+                    return true;
+                }
+                else if (parent is ItemsControl parent_ItemsControl)
+                {
+                    if (parent_ItemsControl.Items.Contains(element))
+                    {
+                        parent_ItemsControl.Items.Remove(element);
+                        return true;
+                    }
+                    if (parent_ItemsControl.Items.Contains(element.DataContext))
+                    {
+                        parent_ItemsControl.Items.Remove(element.DataContext);
+                        return true;
+                    }
+                }
+                else
+                {
+                    var parentType = parent.GetType();
+                    var bindFlag = BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase;
+                    var props = new List<PropertyInfo>
+                    {
+                        parentType.GetProperty("Children", bindFlag),
+                        parentType.GetProperty("Child", bindFlag),
+                        parentType.GetProperty("Content", bindFlag),
+                        parentType.GetProperty("Items", bindFlag)
+                    };
+
+                    bool isRemovalDone = false;
+
+                    foreach (var prop in props)
+                    {
+                        switch (prop.Name.ToLower())
+                        {
+                            case "children":
+                                var children = prop.GetValue(parent, null);
+                                foreach(var method in children.GetType().GetMethods())
+                                {
+                                    if(method.Name.ToLower() == "remove")
+                                    {
+                                        method.Invoke(children, new object[] { element });
+                                        isRemovalDone = true;
+                                    }
+                                }
+                                break;
+                            case "child":
+                            case "content":
+                                if (prop.GetValue(parent) == element)
+                                {
+                                    prop.SetValue(parent, null);
+                                    isRemovalDone = true;
+                                }
+                                break;
+                        }
+                    }
+
+                    if (isRemovalDone)
+                    {
+                        return true;
+                    }
+                }
+
+            }
+            catch
+            {
+                if (Debugger.IsAttached)
+                    throw;
+            }
+
+            return false;
+        }
+
+        public static bool DetachFromLogicalParent(this FrameworkElement element)
+        {
+            var oldParent = element.Parent;
+            DetachFromParent(element, oldParent);
+
+            return element.Parent != oldParent;
+        }
+        public static bool DetachFromVisualParent(this FrameworkElement element)
+        {
+            var oldParent = VisualTreeHelper.GetParent(element);
+            DetachFromParent(element, oldParent);
+
+            return VisualTreeHelper.GetParent(element) != oldParent;
+        }
+
     }
 }

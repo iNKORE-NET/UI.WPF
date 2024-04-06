@@ -407,7 +407,7 @@ namespace iNKORE.UI.WPF.DragDrop
             DoMouseButtonDown(sender, e);
         }
 
-        private static void DragSourceOnTouchDown(object sender, TouchEventArgs e)
+        public static void DragSourceOnTouchDown(object sender, TouchEventArgs e)
         {
             _dragInfo = null;
 
@@ -429,7 +429,7 @@ namespace iNKORE.UI.WPF.DragDrop
             DragSourceDown(sender, dragInfo, e, elementPosition);
         }
 
-        private static void DoMouseButtonDown(object sender, MouseButtonEventArgs e)
+        public static void DoMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
             _dragInfo = null;
 
@@ -452,7 +452,7 @@ namespace iNKORE.UI.WPF.DragDrop
             DragSourceDown(sender, dragInfo, e, elementPosition);
         }
 
-        private static void DragSourceDown(object sender, DragInfo dragInfo, InputEventArgs e, Point elementPosition)
+        public static void DragSourceDown(object sender, DragInfo dragInfo, InputEventArgs e, Point elementPosition)
         {
             if (dragInfo.VisualSource is ItemsControl control && control.CanSelectMultipleItems())
             {
