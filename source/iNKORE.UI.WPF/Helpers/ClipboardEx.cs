@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace iNKORE.UI.WPF.Helpers
 {
+    // This class is designed to avoid the "Cannot open clipboard" error when copying text to the clipboard. (CLIPBRD_E_CANT_OPEN)
+    // The source can be found here: https://zhuanlan.zhihu.com/p/388316834 | https://stackoverflow.com/questions/5707996/clipboard-operations-throwing-exception
     public static class ClipboardEx
     {
         [DllImport("User32")]
