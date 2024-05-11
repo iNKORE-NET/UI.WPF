@@ -18,7 +18,7 @@ namespace iNKORE.UI.WPF.Controls
             VisibilityProperty.OverrideMetadata(typeof(XamlCachedElements), new FrameworkPropertyMetadata(Visibility.Collapsed));
         }
 
-        public static readonly DependencyProperty ElementsProperty = DependencyProperty.Register(nameof(Elements), typeof(IEnumerable<object>), typeof(XamlCachedElements), new PropertyMetadata(null));
+        public static readonly DependencyProperty ElementsProperty = DependencyProperty.Register(nameof(Elements), typeof(Collection<object>), typeof(XamlCachedElements), new PropertyMetadata(null));
         public Collection<object> Elements
         {
             get { return (Collection<object>)GetValue(ElementsProperty); }

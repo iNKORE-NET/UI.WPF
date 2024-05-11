@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\iNKORE.UI.WPF\iNKORE.UI.WPF.csproj" />
+  </ItemGroup>
+
 </Project>
