@@ -40,30 +40,33 @@ namespace iNKORE.UI.WPF.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var cornerRadius = (CornerRadius)value;
-
-            var scale = Scale;
-            if (!double.IsNaN(scale))
+            if (value is CornerRadius cornerRadius)
             {
-                cornerRadius.TopLeft *= scale;
-                cornerRadius.TopRight *= scale;
-                cornerRadius.BottomRight *= scale;
-                cornerRadius.BottomLeft *= scale;
-            }
+                var scale = Scale;
+                if (!double.IsNaN(scale))
+                {
+                    cornerRadius.TopLeft *= scale;
+                    cornerRadius.TopRight *= scale;
+                    cornerRadius.BottomRight *= scale;
+                    cornerRadius.BottomLeft *= scale;
+                }
 
-            var filterType = Filter;
-            if (filterType == CornerRadiusFilterKind.TopLeftValue ||
-                filterType == CornerRadiusFilterKind.BottomRightValue)
-            {
-                return GetDoubleValue(cornerRadius, filterType);
-            }
+                var filterType = Filter;
+                if (filterType == CornerRadiusFilterKind.TopLeftValue ||
+                    filterType == CornerRadiusFilterKind.BottomRightValue)
+                {
+                    return GetDoubleValue(cornerRadius, filterType);
+                }
 
-            return Convert(cornerRadius, filterType);
+                return Convert(cornerRadius, filterType);
+            }
+            return new CornerRadius(0);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return new CornerRadius(0);
+            //throw new NotImplementedException();
         }
 
         private double GetDoubleValue(CornerRadius radius, CornerRadiusFilterKind filterKind)
