@@ -28,7 +28,7 @@ namespace iNKORE.UI.WPF.Common
             }
         }
 
-        internal SingleChildEnumerator(object Child)
+        public SingleChildEnumerator(object Child)
         {
             _child = Child;
             _count = ((Child != null) ? 1 : 0);

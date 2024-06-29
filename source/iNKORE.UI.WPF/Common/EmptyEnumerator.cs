@@ -32,7 +32,7 @@ namespace iNKORE.UI.WPF.Common
             }
         }
 
-        private EmptyEnumerator()
+        public EmptyEnumerator()
         {
         }
 
