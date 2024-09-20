@@ -45,7 +45,9 @@
 
 - [XamlBehaviorsWpf](https://github.com/microsoft/XamlBehaviorsWpf): Home for WPF XAML Behaviors on GitHub.
 
-- **TaskbarIcon**: The taskbar tray icon
+- [XamlBehaviorsWpf](https://github.com/microsoft/XamlBehaviorsWpf): WPF XAML Behaviors
+
+- **TaskbarIcon**: The taskbar tray icon (https://github.com/hardcodet/wpf-notifyicon)
 
 - **Helpers**: ControlHelper, FontHelper, ImageHelper...
 
