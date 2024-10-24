@@ -21,7 +21,7 @@ using System.Windows.Markup;
 [assembly: AssemblyProduct("iNKORE.UI.WPF")]
 [assembly: AssemblyCopyright("Copyright © iNKORE! 2024")]
 [assembly: AssemblyTrademark("iNKORE!")]
-[assembly: AssemblyVersion("1.2.7")]
+[assembly: AssemblyVersion("1.2.8")]
 [assembly: AssemblyCulture("")]
 
 [assembly: XmlnsPrefix(Extensions.XmlNamespace, "ikw")]
