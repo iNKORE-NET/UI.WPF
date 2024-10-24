@@ -14,7 +14,7 @@ namespace iNKORE.UI.WPF.Converters
 
         public static CornerRadiusEx Convert(CornerRadiusEx radius, CornerRadiusFilterKind filterKind, double scale = 1)
         {
-            CornerRadiusEx result = radius;
+            CornerRadiusEx result = new CornerRadiusEx(0);
 
             if (filterKind.HasFlag(CornerRadiusFilterKind.TopLeft))
             {
