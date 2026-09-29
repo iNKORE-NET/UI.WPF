@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:i="clr-namespace:Microsoft.Xaml.Behaviors"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:converters="clr-namespace:iNKORE.UI.WPF.Converters"
              xmlns:behaviours="clr-namespace:iNKORE.UI.WPF.ColorPicker.Behaviors"
              xmlns:controls="clr-namespace:iNKORE.UI.WPF.ColorPicker.UserControls"

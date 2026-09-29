@@ -10,7 +10,7 @@
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\..\assets\misc\iNKORE.Pulic.snk</AssemblyOriginatorKeyFile>
 		<SignAssembly>True</SignAssembly>
-		<TargetFrameworks>net6.0-windows;net452</TargetFrameworks>
+		<TargetFrameworks>net10.0-windows;net8.0-windows;net462</TargetFrameworks>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -50,6 +50,12 @@
 
 	<ItemGroup>
 		<Resource Include="Resources\Images\transparentbg_mini.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+	    <Version>1.1.0</Version>
+	  </PackageReference>
 	</ItemGroup>
 
 </Project>
